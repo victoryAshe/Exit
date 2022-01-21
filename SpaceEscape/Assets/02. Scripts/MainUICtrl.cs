@@ -13,6 +13,13 @@ public class MainUICtrl : MonoBehaviour
 
     public GameObject setupPanel;
 
+    public Image logo;
+
+    void Awake()
+    {
+        StartCoroutine(FadeOut());
+        
+    }
 
     void Start()
     {
@@ -57,5 +64,19 @@ public class MainUICtrl : MonoBehaviour
         else
             setupPanel.SetActive(false);
     }
-}
 
+
+    IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        float fadeCount = 1.0f; //처음 알파값
+        while (fadeCount > 0)
+        {
+            fadeCount -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            logo.color = new Color(255, 255, 255, fadeCount);//해당 변수값으로 알파값 지정
+        }
+        logo.gameObject.SetActive(false);
+    }
+}
