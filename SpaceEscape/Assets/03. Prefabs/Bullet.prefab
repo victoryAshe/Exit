@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  weaponPower: 5
 --- !u!135 &7509399075076529233
 SphereCollider:
   m_ObjectHideFlags: 0

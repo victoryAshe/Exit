@@ -11,6 +11,9 @@ public class EnemyFSM : MonoBehaviour
     }
     EnemyState m_State;
 
+    Enemy enemy;
+    public Text lvText;
+
     //## Idle ##
     public float findDistance = 8f;
     Transform player;
@@ -21,13 +24,14 @@ public class EnemyFSM : MonoBehaviour
 
     //## Attack ##
     float currentTime = 0;  float attackDelay = 2f;
-    public int attackPower = 3;
+    public int attackPower;
 
     public Slider hpSlider;
-    public int hp = 15; int maxHp = 15;
+    public int hp; int maxHp;
 
     CharacterController cc;
     Animator anim;
+
 
     void Start()
     {
@@ -37,10 +41,15 @@ public class EnemyFSM : MonoBehaviour
         cc = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
+        enemy = GetComponent<Enemy>();
+        maxHp = enemy.maxHp;    hp = maxHp;
+        attackPower = enemy.power;
+        lvText.text = "LV. "+enemy.level.ToString();
     }
 
     void Update()
     {
+        //DisplayHp
         hpSlider.value = (float)hp / (float)maxHp;
 
         switch (m_State)
@@ -76,6 +85,8 @@ public class EnemyFSM : MonoBehaviour
 
     void Move()
     {
+        if (cc.enabled == false) return;
+
         if (Vector3.Distance(transform.position, player.position) > attackDistance)
         {
             Vector3 dir = (player.position - transform.position).normalized;
@@ -163,7 +174,11 @@ public class EnemyFSM : MonoBehaviour
         cc.enabled = false;
         
         yield return new WaitForSeconds(2.0f);
-        Destroy(gameObject);
 
+        PlayerMove pm = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMove>();
+        pm.GetComponent<PlayerMove>().killCount += 1;
+        pm.LevelUp();
+
+        Destroy(gameObject);
     }
 }

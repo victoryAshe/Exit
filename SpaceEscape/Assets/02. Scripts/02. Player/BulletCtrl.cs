@@ -8,10 +8,14 @@ public class BulletCtrl : MonoBehaviour
     private float force = 1500.0f;  //발사하는 힘
     private Rigidbody rb;
 
-    public int weaponPower = 5;
+    public int weaponPower;
+    PlayerMove pm;
 
     void Start()
     {
+        pm = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMove>();
+        weaponPower = pm.level * 5;
+
         rb = GetComponent<Rigidbody>();
 
         //총알의 전진 방향으로 Force를 가함

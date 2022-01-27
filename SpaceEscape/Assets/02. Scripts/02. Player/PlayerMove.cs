@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -10,8 +11,12 @@ public class PlayerMove : MonoBehaviour
     private float gravity = -20f;   // 중력 변수
     private float yVelocity = 0;    // 수직 속력 변수
 
+    public int level = 1;   public Text LvText;
+    public int killCount = 0;
+    public TextMeshProUGUI hpText;
     public int hp = 20; int maxHp = 20;
     public Image hpImage;
+    public GameObject bulletPrefab;
 
     CharacterController cc; //CharacterController 캐시처리 변수
     private Animation anim;
@@ -30,7 +35,7 @@ public class PlayerMove : MonoBehaviour
 
         Move();
 
-        UpdateHP();
+        DisplayHp();
     }
 
     void Move()
@@ -81,6 +86,8 @@ public class PlayerMove : MonoBehaviour
     {
         hp -= damage;
 
+        if (hp <= 0) GameManager.instance.isGameOver = true;
+
     }
 
     public void OnHeal(int value)
@@ -93,9 +100,22 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    void UpdateHP()
+    void DisplayHp()
     {
         int x = (800 / maxHp) * (maxHp - hp);
         hpImage.rectTransform.anchoredPosition = new Vector3(-x, 0, 0);
+        hpText.text = hp + "/" + maxHp;
+
+    }
+
+    public void LevelUp()
+    {
+        if (level * 3 == killCount)
+        {
+            level += 1; killCount = 0;
+            maxHp = 20 * level; hp = maxHp;
+            LvText.text = "Lv. " + level;
+
+        }
     }
 }
