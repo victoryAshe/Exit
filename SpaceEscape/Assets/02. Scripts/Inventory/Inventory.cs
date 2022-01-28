@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     public Dictionary<int, int>
     inventory = new Dictionary<int, int>();
 
-    /* button~ 추가
+    /* button~ 추가 */
     
 
     // Start is called before the first frame update
