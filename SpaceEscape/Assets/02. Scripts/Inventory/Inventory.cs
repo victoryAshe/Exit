@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour
 
     public Dictionary<int, int>
     inventory = new Dictionary<int, int>();
+
+    /* button~ 추가
     
 
     // Start is called before the first frame update
@@ -58,9 +60,11 @@ public class Inventory : MonoBehaviour
     } 
    */
 
-    public void HoldItem(int objectId)
+// 왼쪽 버튼 누르면 오브젝트에 있는 item 을 손에 잡고 있는다.
+/*    public void HoldItem(int objectId)
     {
-
+    
     }
+*/
 
 }
