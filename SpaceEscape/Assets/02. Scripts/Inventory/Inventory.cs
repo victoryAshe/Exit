@@ -16,7 +16,10 @@ public class Inventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*
+        Image image = uibutton.GetComponent<image>();
+        Debug.Log(image.srite.name);
+        */
     }
 
     // Update is called once per frame
@@ -41,10 +44,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void DelItem(int objectId)
+   /* 
+    * public void DelItem(int objectId)
     {
-
-    }
+        if(inventory.ContainsKey(objectId))
+        {
+            inventory[objectId] = inventory[objectId] - 1;
+        }
+        else
+        {
+            inventory.Del(objectId, 1);
+        }
+    } 
+   */
 
     public void HoldItem(int objectId)
     {
