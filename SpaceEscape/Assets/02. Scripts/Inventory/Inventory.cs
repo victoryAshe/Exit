@@ -1,7 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
@@ -63,7 +65,9 @@ public class Inventory : MonoBehaviour
         else
         {
             inventory.Remove(objectId);
-        }
+        
+
+        
     }
 
 
@@ -75,22 +79,22 @@ public class Inventory : MonoBehaviour
     */
 
 
-    public void GetValue()
+    public void GetValue(GameObject item)
     {
         if (Input.GetKeyDown("R"))
         {
             InvenActive = false;
         }
 
-        if (Input.GetKeyDown("0"))
-        {
-            Image itemImage = invenUI[9].GetComponent<Image>();
+            if (Input.GetKeyDown("0"))
+            {
+                Image itemImage = invenUI[9].GetComponent<Image>();
 
-            string GameObject = "";
-            GameObject = int GameObject;
-                       
+                // string GameObject = "";
 
-        }
+
+
+            }
 
 
 
