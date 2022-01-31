@@ -1,70 +1,140 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Inventory : MonoBehaviour
+public class Inventory2 : MonoBehaviour
 {
+    public string number;
+    private int objectId;
+    public List<Button> invenUI = new List<Button>();
+    public Vector3 itemPos;
+    public bool InvenActive;
+
     // 인벤토리 사용할 때에는 플레이어의 움직임 불가능
     public static bool inventoryActivated = false;
 
-    // 필요한 컴포넌트
-    [SerializeField]
-    public GameObject go_InventoryBase;
-    [SerializeField]
-    public GameObject go_SlotsParent; // 슬롯들 들어있는 content
+    private Item[] items;
 
-    // 슬롯들
-    private Slot[] slots;
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        slots = go_SlotsParent.GetComponentsInChildren<Slot>(); //슬롯들 배열 안에 모든 슬롯들을 들어가게 함
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    // 슬롯에 아이템 채워넣기
-    public void AcquireItem(Item _item, int _count = 1)
+
+    // 인벤토리 안에 각 칸을 딕셔너리로 설정
+    public Dictionary<int, int> inventory = new Dictionary<int, int>();
+
+    // 아이템의 아이디, 갯수
+    public Dictionary<int, int> item = new Dictionary<int, int>();
+
+
+    // E버튼을 누르면
+    // AddItem 함수를 호출해서 아이디에 해당하는 갯수를 더해준다.
+    // 이때 아이템은 0개부터 시작(양수만)
+    public void AddItem(int objectId, int count)
     {
-        if (Item.ItemType.Medicine == _item.itemType)
+        if (Input.GetButtonDown("E"))
         {
-            for (int i = 0; i < slots.Length; i++)
-            {
-                if (slots[i].item != null) // null이 아닐때만 비교
-                { 
+            InvenActive = false;
 
-                    // 이미 존재하는 아이템이 있으면 갯수만 증가
-                    if (slots[i].item.itemName == _item.itemName) // 아이템 이름이랑 슬롯에 들어있는 아이템이 같으면 
-                    {
-                        slots[i].SetSlotCount(_count);
-                        return;
-                    }
-                }
+            // 아이템을 추가하면 인벤토리 목록에 추가한다
+            if (inventory.ContainsKey(objectId) == false)
+            {
+                inventory.Add(objectId, 0); // 초기 개수는 0개
             }
-        
-        }
-
-        for (int i = 0; i < slots.Length; i++)
-        {
-            // 이미 존재하는 아이템이 없다면
-            if (slots[i].item.itemName == "")
+            else
             {
-                slots[i].AddItem(_item, _count); // 빈자리 찾아서 넣어주기
                 return;
             }
+            
+            // 아이템의 갯수를 증가시킨다
+            inventory[objectId] = inventory[objectId] + 1;
         }
     }
 
+    // R버튼을 누르면
+    // DelItem 함수를 호출해서 아이디에 해당하는 갯수를 빼준다
+    public void DelItem(int objectId, int count)
+    {
+        if (Input.GetButtonDown("R"))
+        {
+            InvenActive = false;
+
+            // 아이템 갯수가 0개 이하면 인벤토리에서 삭제
+            if (inventory[objectId] < 0)
+            {
+                inventory.Remove(objectId);
+            }
+
+            // 아이템이 이미 0개면 0개 유지
+            if (inventory.ContainsKey(objectId) == false)
+            {
+                return;
+            }
+
+            // 아이템이 0개 이상이면 갯수 감소시킨다
+            inventory[objectId] = inventory[objectId] - 1;
+
+        }
+    }
+
+    // Q버튼을 누르면
+    // 선택한 인벤토리 안에 있는 아이템을 손에 든다
+    public void HoldItem(string objectId, int count)
+    {
+        GameObject inven = null; // 임시오브젝트 생성
+        inven = GameObject.Find(objectId.ToString());
+        inven = GameObject.FindWithTag("ITEM");
+        
+
+    
+
+        inven.SetActive(false);
+    }
+
+
+    public void GetId()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            InvenActive = false;
+
+            if(InvenActive)
+            {
+
+            }
+
+
+        }
+
+
+        if (Input.GetKeyDown(number))
+        {
+            // 해당 number순서에 있는 아이템의 objectId를 받아온다.
+            GameObject inven = null; // 임시오브젝트 생성
+            inven = GameObject.Find(objectId.ToString());
 
 
 
+
+            int index = int.Parse(number); // string을 int형으로 변환
+            
+
+
+
+        }
+
+    }
 
 }
+
+

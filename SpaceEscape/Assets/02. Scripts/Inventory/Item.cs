@@ -1,21 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    public string itemName; // 아이템 이름
-    public ItemType itemType; // 아이템 유형
-    public Sprite itemImage; // 아이템 이미지
-    public GameObject itemPrefab; // 아이템 프리팹
+    [SerializeField] Text pickUpText;
+    bool isPickUp;
 
-    public enum ItemType
+
+
+    // Start is called before the first frame update
+    void Start()
     {
-        Use,
-        UnUse,
-        Gun,
-        Medicine
+        pickUpText.gameObject.SetActive(false);
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (isPickUp && Input.GetKeyDown(KeyCode.Space))
+        {
+            PickUp();
+        }
+
+    }
+    private void OntriggerEnter3D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            pickUpText.gameObject.SetActive(true);
+            isPickUp = true;
+        }
+    }
+
+    private void OnTriggerExit3D(Collider2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+            pickUpText.gameObject.SetActive(false);
+            isPickUp = false;
+        }
     }
 
 
