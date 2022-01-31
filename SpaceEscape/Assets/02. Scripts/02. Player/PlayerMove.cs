@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        //if (GameManager.gm.gState != GameManager.GameState.Run) return;
+        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused) return;
 
         Move();
 
@@ -86,7 +86,7 @@ public class PlayerMove : MonoBehaviour
     {
         hp -= damage;
 
-        if (hp <= 0) GameManager.instance.isGameOver = true;
+        if (hp <= 0) GameManager.instance.IsGameOver = true;
 
     }
 

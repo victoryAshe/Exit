@@ -67,7 +67,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameOver()
     {
+        //Set Enemy Active False
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("ENEMY");
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.SetActive(false);
+        }
 
+        //ShowOverPanel
         float fadeCount = 0; //처음 알파값
         overPanel.color = new Color(0, 0, 0, fadeCount);
         overPanel.gameObject.SetActive(true);

@@ -183,6 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55323dde98dac474f802a4a11b461027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startNew: {fileID: 4205725513281502442}
+  quit: {fileID: 1258849631612883925}
+  setUp: {fileID: 1121620004}
+  setupPanel: {fileID: 683816809}
 --- !u!1 &11723556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,7 +2654,7 @@ RectTransform:
   - {fileID: 501951356}
   - {fileID: 1105344052}
   m_Father: {fileID: 2107154165}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -4208,6 +4212,7 @@ RectTransform:
   - {fileID: 2107154165}
   - {fileID: 683816810}
   - {fileID: 857400469}
+  - {fileID: 1121620003}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4488,12 +4493,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121620002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2107154165}
-  m_RootOrder: 2
+  m_Father: {fileID: 1067122638}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -6533,7 +6538,6 @@ RectTransform:
   m_Children:
   - {fileID: 389439687}
   - {fileID: 11723557}
-  - {fileID: 1121620003}
   - {fileID: 504173951}
   m_Father: {fileID: 1067122638}
   m_RootOrder: 0
