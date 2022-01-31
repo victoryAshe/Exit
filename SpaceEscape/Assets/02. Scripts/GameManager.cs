@@ -27,13 +27,7 @@ public class GameManager : MonoBehaviour
     }
 
     public bool isGamePaused;
-    public bool IsGamePaused
-    {
-        get { return isGamePaused; }
-        set {
-            
-        }
-    }
+    public bool isShowScript;
 
     public Text timeText;
 
@@ -67,7 +61,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameOver()
     {
+        //Set Enemy Active False
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("ENEMY");
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.SetActive(false);
+        }
 
+        //ShowOverPanel
         float fadeCount = 0; //처음 알파값
         overPanel.color = new Color(0, 0, 0, fadeCount);
         overPanel.gameObject.SetActive(true);
