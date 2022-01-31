@@ -20,7 +20,9 @@ public class ActionController : MonoBehaviour
 
     [SerializeField]
     private Text actionText;  // 필요한 컴포넌트
-    
+    // 인벤토리 받아오는 함수
+    [SerializeField]
+    private Inventory theInventory;
     
 
     // Update is called once per frame
@@ -90,6 +92,7 @@ public class ActionController : MonoBehaviour
                 InfoDisappear();
                 // 획득 성공했다고 알려주기
                 Debug.Log(hitinfo.transform.GetComponent<ItemPickUp>().item.itemName + "획득 성공");
+                theInventory.AcquireItem(hitinfo.transform.GetComponent<ItemPickUp>().item);
             }
         }
     }
