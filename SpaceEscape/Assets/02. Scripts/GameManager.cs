@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
     public bool isShowScript;
 
     public Text timeText;
+    public float minute = 0f;  public float second = 0f;  
+    float Timer
+    { 
+        get { return minute * 60 + second; } 
+        set {} 
+    }
 
     public static GameManager instance = null;
 
@@ -51,12 +57,28 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        //test
+        SetTimer(1, 30);
     }
 
     void Update()
     {
-        
+        if (isGamePaused || IsGameOver) return;
+
+        if (Timer > 0)
+        {
+            if (second >= 1) second -= Time.deltaTime;
+            else if (minute >= 1)
+            {
+                minute -= 1; second = 60f;
+            }
+            else
+            {
+                Timer = 0;
+            }
+            timeText.text = Mathf.Floor(minute) + ":" + Mathf.Floor(second);
+
+        }
     }
 
     IEnumerator GameOver()
@@ -103,6 +125,10 @@ public class GameManager : MonoBehaviour
     public void SetTimer(int m, int s)
     {
         //m = minutes, s = seconds
+        minute = m; second = s;
+        Timer = minute * 60 + second;
         timeText.text = m + ":" + s;
     }
+
+
 }
