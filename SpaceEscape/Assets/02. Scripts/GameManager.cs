@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
 
     public bool isGameOver; public Image overPanel;
+    public bool EndKey;
+    public Text endTitle;    public Text endingText;
+    private string endingString;
+    public GameObject start; public GameObject quit;
 
     //게임의 종료 여부를 저장할 프로퍼티
     public bool IsGameOver
@@ -30,12 +34,14 @@ public class GameManager : MonoBehaviour
     public bool isShowScript;
 
     public Text timeText;
-    public float minute = 0f;  public float second = 0f;  
+    public float minute = 0f;  public float second = 0f;
     float Timer
     { 
         get { return minute * 60 + second; } 
         set {} 
     }
+
+    public GameObject enemy; public GameObject enemies; public int enemyQuantity;
 
     public static GameManager instance = null;
 
@@ -58,7 +64,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //test
-        SetTimer(1, 30);
+        //SetTimer(1, 30);
+
+        //test
+        //CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
     }
 
     void Update()
@@ -91,6 +100,17 @@ public class GameManager : MonoBehaviour
         }
 
         //ShowOverPanel
+        if (EndKey == false)
+        {
+            endTitle.text = "You Failed!";
+            endingString = "외계인에게 습격 당하여 목숨이 위태롭다. 이대로 끝나는 건가…";
+        }
+        else
+        {
+            endTitle.text = "Mission Clear!";
+            endingString = "탈출에 성공해 새로운 행성에 도착했다! 정말 긴 하루였다. 새로운 삶이 기대된다...";
+        }
+
         float fadeCount = 0; //처음 알파값
         overPanel.color = new Color(0, 0, 0, fadeCount);
         overPanel.gameObject.SetActive(true);
@@ -101,6 +121,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             overPanel.color = new Color(0, 0, 0, fadeCount);
         }
+
+        StartCoroutine(TypingEffect());
     }
 
     /*
@@ -117,9 +139,21 @@ public class GameManager : MonoBehaviour
     }
     */
 
-    public void CreateEnemy()
+    public void CreateEnemy(Vector3 pos)
     {
         // TODO: Enemy를 적절한 자리에 Instantiate, Level을 Random으로 정해줌
+        for(int i=0; i< enemyQuantity; i++)
+        {
+            float randomX = pos.x + Random.Range(0f, 15f);
+            float randomZ = pos.z + Random.Range(0f, 15f);
+            GameObject Temp = Instantiate(enemy, new Vector3(randomX, 0.0f, randomZ), Quaternion.identity);
+            Temp.transform.parent = enemies.transform;
+            Temp.SetActive(true);
+        }
+
+        //Zombie들 활성화
+        enemies.SetActive(true);
+
     }
 
     public void SetTimer(int m, int s)
@@ -128,6 +162,18 @@ public class GameManager : MonoBehaviour
         minute = m; second = s;
         Timer = minute * 60 + second;
         timeText.text = m + ":" + s;
+    }
+
+    IEnumerator TypingEffect()
+    {
+        for (int i = 0; i <= endingString.Length; i++)
+        {
+            endingText.text = endingString.Substring(0, i);
+            yield return new WaitForSeconds(0.1f);
+
+        }
+        start.SetActive(true); quit.SetActive(true);
+        
     }
 
 

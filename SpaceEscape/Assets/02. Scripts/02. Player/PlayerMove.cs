@@ -86,7 +86,12 @@ public class PlayerMove : MonoBehaviour
     {
         hp -= damage;
 
-        if (hp <= 0) GameManager.instance.IsGameOver = true;
+        if (hp <= 0)
+        {
+            hp = 0;  DisplayHp();
+            GameManager.instance.EndKey = false;
+            GameManager.instance.IsGameOver = true;
+        }
 
     }
 

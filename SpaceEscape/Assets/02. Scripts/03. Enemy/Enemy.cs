@@ -9,9 +9,8 @@ public class Enemy : MonoBehaviour
     public int level;
     public int hp; public int maxHp;
 
-    public Enemy(int level)
+    void Start()
     {
-        this.level = level;
         power = level * 3;
         maxHp = level * 15;
         hp = maxHp;

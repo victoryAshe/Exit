@@ -14,7 +14,7 @@ public class BulletCtrl : MonoBehaviour
     void Start()
     {
         pm = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMove>();
-        weaponPower = pm.level * 5;
+        weaponPower = pm.level * 3;
 
         rb = GetComponent<Rigidbody>();
 
