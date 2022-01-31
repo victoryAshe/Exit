@@ -8,7 +8,7 @@ public class Item : MonoBehaviour
     [SerializeField] Text pickUpText;
     bool isPickUp;
 
-
+   
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +45,6 @@ public class Item : MonoBehaviour
         }
     }
 
-    void PickUp()
-    {
-        Destroy(gameObject);
-    }
+    
 
 }

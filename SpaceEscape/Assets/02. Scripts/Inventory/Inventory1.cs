@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour
     /* button~ 추가 */
 
     public Sprite[] Object;
-    public bool GetValue;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +89,7 @@ public class Inventory : MonoBehaviour
 
     public void GetId()
     {
+
         if (Input.GetKeyDown("R"))
         {
             InvenActive = false;
@@ -111,9 +111,10 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(number))
         {
-            //TODO: 해당 number순서에 있는 아이템의 objectId를 받아온다.
-            int index = int.Parse(number);
-            Debug.Log(index);
+            //해당 number순서에 있는 아이템의 objectId를 받아온다.
+            int index = int.Parse(number); // string을 int형으로 변환
+
+            
         }
 
     }
