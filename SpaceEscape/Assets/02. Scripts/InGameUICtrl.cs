@@ -25,12 +25,12 @@ public class InGameUICtrl : MonoBehaviour
             OnClickSetUp();
     }
 
-    void OnClickStart()
+    public void OnClickStart()
     {
         SceneManager.LoadScene("InGame");
     }
 
-    void OnClickQuit()
+    public void OnClickQuit()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

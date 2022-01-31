@@ -27,13 +27,7 @@ public class GameManager : MonoBehaviour
     }
 
     public bool isGamePaused;
-    public bool IsGamePaused
-    {
-        get { return isGamePaused; }
-        set {
-            
-        }
-    }
+    public bool isShowScript;
 
     public Text timeText;
 
