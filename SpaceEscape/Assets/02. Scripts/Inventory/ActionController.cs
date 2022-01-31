@@ -23,7 +23,7 @@ public class ActionController : MonoBehaviour
     // 인벤토리 받아오는 함수
     [SerializeField]
     private Inventory theInventory;
-    
+
 
     // Update is called once per frame
     void Update()

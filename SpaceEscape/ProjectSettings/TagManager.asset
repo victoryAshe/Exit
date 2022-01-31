@@ -7,7 +7,7 @@ TagManager:
   - ENEMY
   - PLAYER
   - BULLET
-  - Item
+  - ITEM
   layers:
   - Default
   - TransparentFX
@@ -15,9 +15,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Enemy
-  - Player
-  - Item
+  - 
+  - 
+  - 
   - 
   - 
   - 
