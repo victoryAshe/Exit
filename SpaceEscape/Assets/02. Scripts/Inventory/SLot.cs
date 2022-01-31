@@ -25,7 +25,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         baseRect = transform.parent.parent.GetComponent<RectTransform>().rect;
         originPos = transform.position;
     }
-    
+
 
     // 이미지의 투명도 조절
     // 슬롯 지워줄 때 색상 0으로 만드는 함수 (투명하게)
@@ -68,7 +68,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         itemCount += _count;
         text_Count.text = itemCount.ToString(); // 텍스트 카운트를 아이템 카운트로 바꿈
 
-        if(itemCount <= 0) // 만약 아이템이 없다면
+        if (itemCount <= 0) // 만약 아이템이 없다면
         {
             ClearSlot();
         }
@@ -85,33 +85,33 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
 
         text_Count.text = "0"; // 텍스트 카운트 0으로 초기화
         go_CountImage.SetActive(false);
-        
+
     }
 
     // 인벤토리 위에서 마우스 오른쪽 버튼을 누르면 들기
     // HoldItem이랑 똑같은 거
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
-             if(item != null) // null이 아니면
-             {
-                if(item.itemType == Item.ItemType.Use) // 단서가 되는 오브젝트라면
+            if (item != null) // null이 아니면
+            {
+                if (item.itemType == Item.ItemType.Use) // 단서가 되는 오브젝트라면
                 {
                     // 들기
 
                 }
-             }
+            }
         }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if(item != null)
+        if (item != null)
         {
             DragSlot.instance.dragSlot = this;
             DragSlot.instance.DragSetImage(itemImage);
-              
+
             DragSlot.instance.transform.position = eventData.position;
         }
     }
@@ -124,34 +124,34 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
         }
 
     }
-    
+
     // 인벤토리 창을 벗어나면 인벤토리에서 삭제됨
     public void OnEndDrag(PointerEventData eventData)
     {
         if (item != null)
         {
-            if(DragSlot.instance.transform.localPosition.x < baseRect.xMin || DragSlot.instance.transform.localPosition.x > baseRect.xMax
+            if (DragSlot.instance.transform.localPosition.x < baseRect.xMin || DragSlot.instance.transform.localPosition.x > baseRect.xMax
                  || DragSlot.instance.transform.localPosition.y < baseRect.yMin || DragSlot.instance.transform.localPosition.y > baseRect.yMax)
             {
                 // 원하는 위치에 떨어트리기 - 원하는 컴포넌트 위치에
                 //Instantiate(DragSlot.instance.dragSlot.item.itemPrefab, Inventory.transform.position, Quaternion.identity);
                 DragSlot.instance.dragSlot.ClearSlot();
-           
+
             }
             DragSlot.instance.SetColor(0);
             DragSlot.instance.dragSlot = null;
-               
+
         }
 
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if(DragSlot.instance.dragSlot != null)
+        if (DragSlot.instance.dragSlot != null)
         {
             ChangeSlot();
         }
-        
+
     }
 
     private void ChangeSlot()
@@ -161,7 +161,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
 
         AddItem(DragSlot.instance.dragSlot.item, DragSlot.instance.dragSlot.itemCount);
 
-        if(_tempItem != null)
+        if (_tempItem != null)
         {
             DragSlot.instance.dragSlot.AddItem(_tempItem, _tempItemCount);
         }

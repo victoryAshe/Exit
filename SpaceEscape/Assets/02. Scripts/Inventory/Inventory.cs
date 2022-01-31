@@ -32,17 +32,16 @@ public class Inventory : MonoBehaviour
     }
 
     // 슬롯에 아이템 채워넣기
-    public void AcquireItem(Item _item, int _count = 1)
+    public void AcquireItem(GameObject item, int _count = 1)
     {
-        if (Item.ItemType.Medicine == _item.itemType)
-        {
+
             for (int i = 0; i < slots.Length; i++)
             {
                 if (slots[i].item != null) // null이 아닐때만 비교
                 { 
 
                     // 이미 존재하는 아이템이 있으면 갯수만 증가
-                    if (slots[i].item.itemName == _item.itemName) // 아이템 이름이랑 슬롯에 들어있는 아이템이 같으면 
+                    if (slots[i].item.itemName == item.name) // 아이템 이름이랑 슬롯에 들어있는 아이템이 같으면 
                     {
                         slots[i].SetSlotCount(_count);
                         return;
@@ -50,14 +49,14 @@ public class Inventory : MonoBehaviour
                 }
             }
         
-        }
+        
 
         for (int i = 0; i < slots.Length; i++)
         {
             // 이미 존재하는 아이템이 없다면
             if (slots[i].item.itemName == "")
             {
-                slots[i].AddItem(_item, _count); // 빈자리 찾아서 넣어주기
+                //slots[i].AddItem(item, _count); // 빈자리 찾아서 넣어주기
                 return;
             }
         }
