@@ -28,6 +28,10 @@ public class EnemyFSM : MonoBehaviour
     public Slider hpSlider;
     public int hp; int maxHp;
 
+    //## DropItem ##
+    public GameObject[] Items = new GameObject[] { };
+
+
     CharacterController cc;
     Animator anim;
 
@@ -180,6 +184,10 @@ public class EnemyFSM : MonoBehaviour
         pm.GetComponent<PlayerMove>().killCount += 1;
         pm.LevelUp();
 
+        //Drop Item
+        int index = Random.Range(0, Items.Length - 1);
+        GameObject item = Instantiate(Items[index], transform.position, transform.rotation);
+        item.name = Items[index].name;
         Destroy(gameObject);
     }
 }

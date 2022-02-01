@@ -2610,6 +2610,8 @@ MonoBehaviour:
   attackPower: 3
   hpSlider: {fileID: 5007833585272667691}
   hp: 15
+  Items:
+  - {fileID: 1588938336608259083, guid: 3d607aafe450061469c2b33ad5362032, type: 3}
 --- !u!1 &5007833584641620550
 GameObject:
   m_ObjectHideFlags: 0

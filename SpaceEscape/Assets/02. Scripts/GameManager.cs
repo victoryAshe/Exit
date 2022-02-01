@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         //SetTimer(1, 30);
 
         //test
-        //CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
+        CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
     }
 
     void Update()
