@@ -46,17 +46,16 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetButtonDown("")) // 가져오기 버튼이랑 연결
         {
-            for (int i = 0; i < items.Length; i++)
-            {
+            
                 // 이미 존재하는 아이템이 없다면
-                if (inventory[i].name = "")
+                if (!inventory.ContainsKey(objectId))
                 {
-                    inventory[i].Additem(); // 빈자리 찾아서 넣어주기
+                    inventory.Add(objectId, 1); // 빈자리 찾아서 넣어주기
                     InvenActive = false;    // 성공하면 invenactive false로
                 }
                 // 화면상에서 게임 오브젝트 없애기
                 Destroy(this.gameObject);
-            }
+            
         }
     }
 
@@ -101,20 +100,32 @@ public class Inventory : MonoBehaviour
 
         inven.SetActive(false);*/
 
-
     }
 
+    // 원하는 칸 활성화 위해서
+    public ObjectData[] _itemData;
+    public Button Button0;
+    public Button Button1;
+    public Button Button2;
+    public Button Button3;
+    public Button Button4;
+    public Button Button5;
+    public Button Button6;
+    public Button Button7;
+    public Button Button8;
+    public Button Button9;
+    
 
     public void GetId()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             // 원하는 칸 활성화
-            GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
-
+            
+            
+          
             // 해당 number순서에 있는 아이템의 objectId를 받아온다.
-            GameObject inven = null; // 임시오브젝트 생성
-            inven = GameObject.Find(objectId.ToString());
+            
             int index = int.Parse(number); // string을 int형으로 변환
 
         }
