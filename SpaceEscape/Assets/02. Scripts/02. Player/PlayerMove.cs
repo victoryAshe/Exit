@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
     private float gravity = -20f;   // 중력 변수
     private float yVelocity = 0;    // 수직 속력 변수
 
-    public int level = 1;   public Text LvText;
+    public int level = 1;   public TextMeshProUGUI LvText;
     public int killCount = 0;
     public TextMeshProUGUI hpText;
     public int hp = 20; int maxHp = 20;
@@ -86,7 +86,12 @@ public class PlayerMove : MonoBehaviour
     {
         hp -= damage;
 
-        if (hp <= 0) GameManager.instance.IsGameOver = true;
+        if (hp <= 0)
+        {
+            hp = 0;  DisplayHp();
+            GameManager.instance.EndKey = false;
+            GameManager.instance.IsGameOver = true;
+        }
 
     }
 
@@ -114,7 +119,7 @@ public class PlayerMove : MonoBehaviour
         {
             level += 1; killCount = 0;
             maxHp = 20 * level; hp = maxHp;
-            LvText.text = "Lv. " + level;
+            LvText.text = level.ToString();
 
         }
     }
