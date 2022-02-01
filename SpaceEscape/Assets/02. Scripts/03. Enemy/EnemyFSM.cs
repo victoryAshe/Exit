@@ -71,9 +71,9 @@ public class EnemyFSM : MonoBehaviour
             case EnemyState.Damaged:
                 Damaged();
                 break;
-            case EnemyState.Die:
-                Die();
-                break;
+            //case EnemyState.Die:
+            //    Die();
+            //    break;
         }
 
     }
@@ -188,6 +188,7 @@ public class EnemyFSM : MonoBehaviour
         int index = Random.Range(0, Items.Length - 1);
         GameObject item = Instantiate(Items[index], transform.position, transform.rotation);
         item.name = Items[index].name;
+
         Destroy(gameObject);
     }
 }
