@@ -10,8 +10,7 @@ public class EnemyFSM : MonoBehaviour
         Idle, Move, Attack, Damaged, Die
     }
     EnemyState m_State;
-
-    Enemy enemy;
+    public int level;
     public Text lvText;
 
     //## Idle ##
@@ -29,6 +28,10 @@ public class EnemyFSM : MonoBehaviour
     public Slider hpSlider;
     public int hp; int maxHp;
 
+    //## DropItem ##
+    public GameObject[] Items = new GameObject[] { };
+
+
     CharacterController cc;
     Animator anim;
 
@@ -41,10 +44,10 @@ public class EnemyFSM : MonoBehaviour
         cc = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
-        enemy = GetComponent<Enemy>();
-        maxHp = enemy.maxHp;    hp = maxHp;
-        attackPower = enemy.power;
-        lvText.text = "LV. "+enemy.level.ToString();
+        level = Random.Range(1, 10);
+        maxHp = level*15;    hp = maxHp;
+        attackPower = level*3;
+        lvText.text = "LV. "+level.ToString();
     }
 
     void Update()
@@ -68,9 +71,9 @@ public class EnemyFSM : MonoBehaviour
             case EnemyState.Damaged:
                 Damaged();
                 break;
-            case EnemyState.Die:
-                Die();
-                break;
+            //case EnemyState.Die:
+            //    Die();
+            //    break;
         }
 
     }
@@ -180,6 +183,11 @@ public class EnemyFSM : MonoBehaviour
         PlayerMove pm = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMove>();
         pm.GetComponent<PlayerMove>().killCount += 1;
         pm.LevelUp();
+
+        //Drop Item
+        int index = Random.Range(0, Items.Length - 1);
+        GameObject item = Instantiate(Items[index], transform.position, transform.rotation);
+        item.name = Items[index].name;
 
         Destroy(gameObject);
     }

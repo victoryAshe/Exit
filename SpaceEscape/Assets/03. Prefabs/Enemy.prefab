@@ -2550,8 +2550,7 @@ GameObject:
   - component: {fileID: 5007833584271194419}
   - component: {fileID: 5007833584271194418}
   - component: {fileID: 5007833584271194417}
-  - component: {fileID: 6327868872321548830}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: ENEMY
   m_Icon: {fileID: 0}
@@ -2603,6 +2602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29bef48efc07c548ba946f99982b9bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
   lvText: {fileID: 8384006620368108807}
   findDistance: 8
   attackDistance: 2
@@ -2610,22 +2610,13 @@ MonoBehaviour:
   attackPower: 3
   hpSlider: {fileID: 5007833585272667691}
   hp: 15
---- !u!114 &6327868872321548830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5007833584271194416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 827267c59b818844bbb7a60be2a5fc08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  power: 3
-  level: 1
-  hp: 15
-  maxHp: 15
+  Items:
+  - {fileID: 6548637232614498797, guid: 914fb394877c77343a44de508a410649, type: 3}
+  - {fileID: 6548637232614498797, guid: 9399063fa90c4fb4688d2105450c586c, type: 3}
+  - {fileID: 6548637232614498797, guid: 194a7cc0bf6a72a4b97377f2e34d5fda, type: 3}
+  - {fileID: 6548637232614498797, guid: 2639a81560d3e0447978e906c2065a28, type: 3}
+  - {fileID: 1588938336608259083, guid: 3d607aafe450061469c2b33ad5362032, type: 3}
+  - {fileID: 6548637232614498797, guid: e5d5ea73d97cccc4192c5b463fce56a8, type: 3}
 --- !u!1 &5007833584641620550
 GameObject:
   m_ObjectHideFlags: 0
