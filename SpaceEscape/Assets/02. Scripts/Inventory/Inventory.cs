@@ -4,18 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Inventory2 : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
     public string number;
     private int objectId;
+    public Sprite itemImage;
     public List<Button> invenUI = new List<Button>();
     public Vector3 itemPos;
     public bool InvenActive;
+    private Item[] items;
+    public int itemCount; // 획득한 아이템 개수
+ 
+
 
     // 인벤토리 사용할 때에는 플레이어의 움직임 불가능
     public static bool inventoryActivated = false;
 
-    private Item[] items;
 
     void Start()
     {
@@ -36,105 +40,109 @@ public class Inventory2 : MonoBehaviour
     public Dictionary<int, int> item = new Dictionary<int, int>();
 
 
-    // E버튼을 누르면
-    // AddItem 함수를 호출해서 아이디에 해당하는 갯수를 더해준다.
-    // 이때 아이템은 0개부터 시작(양수만)
+    // 가져오기 버튼 누르면 인벤토리에 아이템 추가
+    // AddItem 함수 호출
     public void AddItem(int objectId, int count)
     {
-        if (Input.GetButtonDown("E"))
+        if (Input.GetButtonDown("")) // 가져오기 버튼이랑 연결
         {
-            InvenActive = false;
-
-            // 아이템을 추가하면 인벤토리 목록에 추가한다
-            if (inventory.ContainsKey(objectId) == false)
+            for (int i = 0; i < items.Length; i++)
             {
-                inventory.Add(objectId, 0); // 초기 개수는 0개
+                // 이미 존재하는 아이템이 없다면
+                if (inventory[i].name = "")
+                {
+                    inventory[i].Additem(); // 빈자리 찾아서 넣어주기
+                    InvenActive = false;    // 성공하면 invenactive false로
+                }
+                // 화면상에서 게임 오브젝트 없애기
+                Destroy(this.gameObject);
             }
-            else
-            {
-                return;
-            }
-            
-            // 아이템의 갯수를 증가시킨다
-            inventory[objectId] = inventory[objectId] + 1;
         }
     }
 
     // R버튼을 누르면
-    // DelItem 함수를 호출해서 아이디에 해당하는 갯수를 빼준다
+    // DelItem 함수 호출
     public void DelItem(int objectId, int count)
     {
-        if (Input.GetButtonDown("R"))
+
+        // 아이템 갯수가 0개 이하면 인벤토리에서 삭제
+        if (inventory[objectId] <= 0)
         {
-            InvenActive = false;
-
-            // 아이템 갯수가 0개 이하면 인벤토리에서 삭제
-            if (inventory[objectId] < 0)
-            {
-                inventory.Remove(objectId);
-            }
-
-            // 아이템이 이미 0개면 0개 유지
-            if (inventory.ContainsKey(objectId) == false)
-            {
-                return;
-            }
-
-            // 아이템이 0개 이상이면 갯수 감소시킨다
-            inventory[objectId] = inventory[objectId] - 1;
-
+            inventory.Remove(objectId);
         }
+
+        // 아이템이 이미 0개면 0개 유지
+        if (inventory.ContainsKey(objectId) == false)
+        {
+            return;
+        }
+
+        // 아이템이 0개 이상이면 갯수 감소시킨다
+        inventory[objectId] = inventory[objectId] - 1;
+
     }
 
     // Q버튼을 누르면
-    // 선택한 인벤토리 안에 있는 아이템을 손에 든다
+    // HoldItem 호출
     public void HoldItem(string objectId, int count)
     {
-        GameObject inven = null; // 임시오브젝트 생성
+        // 선택한 칸의 objectId 가져오기
+
+        // 선택한 칸의 objectId 데이터 가져오기
+
+        // 화면상의 이미지 삭제
+
+        // objectId 해당하는 Item의 Prefab을 Player의 왼손에
+
+
+        /*GameObject inven = null; // 임시오브젝트 생성
         inven = GameObject.Find(objectId.ToString());
         inven = GameObject.FindWithTag("ITEM");
-        
 
-    
+        inven.SetActive(false);*/
 
-        inven.SetActive(false);
+
     }
 
 
     public void GetId()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            // 원하는 칸 활성화
+            GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+
+            // 해당 number순서에 있는 아이템의 objectId를 받아온다.
+            GameObject inven = null; // 임시오브젝트 생성
+            inven = GameObject.Find(objectId.ToString());
+            int index = int.Parse(number); // string을 int형으로 변환
+
+        }
         
+        // DelItem 호출
         if (Input.GetKeyDown(KeyCode.R))
         {
             InvenActive = false;
 
-            if(InvenActive)
-            {
-
-            }
-
-
+            DelItem(objectId, itemCount); // DelItem 호출
         }
 
-
-        if (Input.GetKeyDown(number))
+        // HoldItem 호출
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            // 해당 number순서에 있는 아이템의 objectId를 받아온다.
-            GameObject inven = null; // 임시오브젝트 생성
-            inven = GameObject.Find(objectId.ToString());
-
-
-
-
-            int index = int.Parse(number); // string을 int형으로 변환
-            
-
-
-
+            InvenActive = false;
+            string holditem = objectId.ToString();
+            HoldItem(holditem, itemCount); // HoldItem 호출
         }
+
+
+        
 
     }
 
+
+
 }
+
 
 
