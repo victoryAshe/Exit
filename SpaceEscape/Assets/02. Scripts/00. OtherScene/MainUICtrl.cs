@@ -46,6 +46,8 @@ public class MainUICtrl : MonoBehaviour
     void OnClickStart()
     {
         SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+
     }
 
     void OnClickQuit()
