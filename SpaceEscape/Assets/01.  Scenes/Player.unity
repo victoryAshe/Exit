@@ -183,7 +183,7 @@ MonoBehaviour:
   second: 0
   enemy: {fileID: 5007833584271194416, guid: e2f023d42c3d46445a6eaa247a1ec968, type: 3}
   enemies: {fileID: 481555650}
-  enemyQuantity: 0
+  enemyQuantity: 3
 --- !u!114 &10296525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2185,7 +2185,7 @@ MonoBehaviour:
   jumpPower: 5
   isJumping: 0
   level: 1
-  LvText: {fileID: 0}
+  LvText: {fileID: 523382801}
   killCount: 0
   hpText: {fileID: 1880834793}
   hp: 20
