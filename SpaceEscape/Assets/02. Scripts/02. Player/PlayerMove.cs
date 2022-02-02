@@ -111,7 +111,6 @@ public class PlayerMove : MonoBehaviour
         hpImage.rectTransform.anchoredPosition = new Vector3(-x, 0, 0);
         hpText.text = "<size=80><b>"+hp+ "</b></size><color=#00FFD0><b>/</b></color>"+maxHp;
         
-      
 
     }
 

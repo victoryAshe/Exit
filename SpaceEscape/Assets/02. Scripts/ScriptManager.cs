@@ -23,7 +23,7 @@ public class ScriptManager : MonoBehaviour
     public Dictionary<int, Talk[]> Script = new Dictionary<int, Talk[]>()
     {
         { 0, new Talk[]{ new Talk(0, "체력을 15 회복시켜주는 아이템이다."), new Talk(1, "체력을 15 회복시켜주는 아이템이다."), new Talk(2, "체력을 15 회복시켜주는 아이템이다."), new Talk(3, "체력을 15 회복시켜주는 아이템이다.")} },
-        { 100, new Talk[]{ new Talk(1, "나무판을 발견했다. 이건 어디에 쓰는 판일까?") } },
+        //{ 100, new Talk[]{ new Talk(1, "나무판을 발견했다. 이건 어디에 쓰는 판일까?") } },
         { 111, new Talk[]{ new Talk(1, "퍼즐 조각을 발견했다.") } },
         { 112, new Talk[]{ new Talk(1, "이 퍼즐 조각은 뭐지? 흠...") } },
         { 113, new Talk[]{ new Talk(1, "어디엔가 쓰임이 있을 것 같다.") } },
@@ -53,12 +53,18 @@ public class ScriptManager : MonoBehaviour
     public Button get;
     public Button exit;
 
+    GameObject item;
+    ObjectData data;
+
     QuestManager qm;
+    Inventory inven;
 
     void Start()
     {
         exit.onClick.AddListener(() => CloseScript());
+        get.onClick.AddListener(() => GetItem());
         qm = GetComponent<QuestManager>();
+        inven = GetComponent<Inventory>();
 
     }
 
@@ -79,10 +85,12 @@ public class ScriptManager : MonoBehaviour
     public void ShowScript(GameObject item)
     {
         GameManager.instance.isShowScript = true;
-        ObjectData data = item.GetComponent<ObjectData>();
+
+        this.item = item;
+        data = item.GetComponent<ObjectData>();
         
         scriptPanel.SetActive(true);
-        nameText.text = item.name;
+        nameText.text = data.objectName;
         explainText.text = Script[data.objectId][qm.questId].talk;
 
         itemImage.sprite = Resources.Load<Sprite>("ItemImage/"+data.objectId);
@@ -96,5 +104,14 @@ public class ScriptManager : MonoBehaviour
     {
         GameManager.instance.isShowScript = false;
         scriptPanel.SetActive(false);
+    }
+
+    public void GetItem()
+    {
+        inven.AddItem(data);
+        scriptPanel.SetActive(false);
+        item.SetActive(false);
+        GameManager.instance.isShowScript = false;
+
     }
 }
