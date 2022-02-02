@@ -82,7 +82,7 @@ public class ScriptManager : MonoBehaviour
         ObjectData data = item.GetComponent<ObjectData>();
         
         scriptPanel.SetActive(true);
-        nameText.text = item.name;
+        nameText.text = data.objectName;
         explainText.text = Script[data.objectId][qm.questId].talk;
 
         itemImage.sprite = Resources.Load<Sprite>("ItemImage/"+data.objectId);
