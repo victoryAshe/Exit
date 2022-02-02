@@ -6,6 +6,8 @@ public class Room1mini : MonoBehaviour
 {
 
     public GameObject Player;
+    public bool open=false;
+
     void Start()
     {
         Player = GameObject.FindWithTag("PLAYER");
@@ -16,20 +18,24 @@ public class Room1mini : MonoBehaviour
         //player와 서랍 사이의 거리=dir
         dir = Player.transform.position - transform.position;
 
-        //플레이어와 물체의 사이 거리가 5 이하이고, f 버튼을 누른다면
-        if (Vector3.Distance(Player.transform.position, transform.position) < 5 && Input.GetKeyDown(KeyCode.F))
+        //플레이어와 물체의 사이 거리가 1 이하고, f를 누르면
+        if (Vector3.Distance(Player.transform.position, transform.position) < 1 && Input.GetKeyDown(KeyCode.F))
         {
-           
-            //서랍을 연다.
-            transform.position += Time.deltaTime * dir;
+            //open이 false면 문을연다.
+            if(open==false)
+            {
+                transform.position += Time.deltaTime * dir;
+                //이렇게되면 open은 true가 된다.
+                open = true;
+            }
+            //open이 true면 문 닫
+            else
+            {
+                transform.position -= Time.deltaTime * dir;
+            }
+            
         }
-        
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            //서랍을 닫는다. 
-            transform.position -= Time.deltaTime * dir;
-        }
-        
+             
     }
        
 }
