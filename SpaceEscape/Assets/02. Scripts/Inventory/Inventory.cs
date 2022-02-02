@@ -72,41 +72,32 @@ public class Inventory : MonoBehaviour
 
         
         // 아이템 갯수가 0개 이하면 인벤토리에서 삭제
-        if (inventory[objectId].quantity <= 0)
+        if (inventory[objectId].quantity <= 1)
         {
             inventory.Remove(objectId);
         }
+        else
+        {
+            // 아이템이 0개 이상이면 갯수 감소시킨다
+            inventory[objectId].quantity = inventory[objectId].quantity - 1;
+        }
 
-        // 아이템이 이미 0개면 0개 유지
+        /* 아이템이 이미 0개면 0개 유지
         if (inventory.ContainsKey(objectId) == false)
         {
             return;
-        }
-
-        // 아이템이 0개 이상이면 갯수 감소시킨다
-        inventory[objectId].quantity = inventory[objectId].quantity - 1;
-
+        }*/
 
         InvenActive = false;
-
-
     }
 
     // Q버튼을 누르면
     // HoldItem 호출
     public void HoldItem()
     {
-        GameObject parent = GameObject.Find("Item");
-        //GameObject Item = parent.transform.Find();
-        //Item.transform.parent = ItemPos.transform;
-        ItemPos.SetActive(true);
-
-
-
-        GameObject inven = null; // 임시오브젝트 생성
-        inven = GameObject.Find(objectId.ToString());
-        inven = GameObject.FindWithTag("ITEM");
-
+        GameObject item = GameObject.Find("Item").transform.Find(objectId.ToString()).gameObject;
+        item.SetActive(true);
+        item.transform.parent = ItemPos.transform;
         
         InvenActive = false;
 
