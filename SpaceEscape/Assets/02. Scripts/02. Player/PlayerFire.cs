@@ -19,7 +19,7 @@ public class PlayerFire : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript) return;
+        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript || GameManager.instance.isShowPanel) return;
 
         if (Input.GetMouseButtonDown(0)) Fire();
     }

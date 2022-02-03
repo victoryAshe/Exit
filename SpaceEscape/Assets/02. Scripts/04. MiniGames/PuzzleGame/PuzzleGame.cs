@@ -7,7 +7,6 @@ public class PuzzleGame : MonoBehaviour
 {
     public GameObject ShowUI;
     public GameObject Player;
-    public 
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +20,7 @@ public class PuzzleGame : MonoBehaviour
         Vector3 PlayerPos;
         PlayerPos = Player.gameObject.transform.position;
 
-        if (Vector3.Distance(PlayerPos, transform.position) <= 8.0f)
+        if (Vector3.Distance(PlayerPos, transform.position) <= 4.0f)
         {
             // PuzzleUI 나타나게 만들기
             ShowUI.SetActive(true);
