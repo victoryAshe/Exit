@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// 퍼즐 조각에 들어가는 스크립트
-public class PuzzlePiece : MonoBehaviour,IDragHandler, IEndDragHandler
+public class PuzzlePiece : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
+
 {
-    public int snapOffset = 30;
-    public GameObject piecePos; // 퍼즐 조각의 위치를 지정해줌
+
+    [SerializeField] public GameObject puzzlepiece;
+    private RectTransform rectTransform;
+
+    private void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        Debug.Log("OnBeginDrag");
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        Debug.Log("OnDrag");
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("OnDrop");
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(Vector3.Distance(piecePos.transform.position, transform.position) < snapOffset)
-        {
-            transform.SetParent(piecePos.transform);
-            transform.localPosition = Vector3.zero;
-        }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("OnEndDrag");
     }
 }
