@@ -100,7 +100,8 @@ public class Inventory : MonoBehaviour
         if (GameObject.Find("Item"))
         {
             GameObject item = GameObject.Find("Item").transform.Find(objectId.ToString()).gameObject;
-            item.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            Vector3 originScale = item.transform.localScale;
+            item.transform.localScale = new Vector3(originScale.x*0.1f, originScale.y*0.1f, originScale.z*0.1f);
             item.SetActive(true);
             item.transform.position = ItemPos.transform.position;
             item.transform.parent = ItemPos.transform;

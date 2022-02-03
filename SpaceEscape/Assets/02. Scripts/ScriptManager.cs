@@ -55,6 +55,7 @@ public class ScriptManager : MonoBehaviour
 
     GameObject item;
     ObjectData data;
+    GameObject player;
 
     QuestManager qm;
     Inventory inven;
@@ -65,7 +66,7 @@ public class ScriptManager : MonoBehaviour
         get.onClick.AddListener(() => GetItem());
         qm = GetComponent<QuestManager>();
         inven = GetComponent<Inventory>();
-
+        player = GameObject.FindWithTag("PLAYER");
     }
 
     void Update()
@@ -75,7 +76,8 @@ public class ScriptManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo = new RaycastHit();
             
-            if(Physics.Raycast(ray, out hitInfo)&& hitInfo.transform.gameObject.CompareTag("ITEM"))
+            if(Physics.Raycast(ray, out hitInfo)&& hitInfo.transform.gameObject.CompareTag("ITEM")
+                && Vector3.Distance(player.transform.position, hitInfo.transform.position)<4.0f)
             {
                 ShowScript(hitInfo.transform.gameObject);
             }

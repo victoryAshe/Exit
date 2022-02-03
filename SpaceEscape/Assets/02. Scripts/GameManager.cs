@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator GameOver()
+    public IEnumerator GameOver()
     {
         //Set Enemy Active False
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("ENEMY");
@@ -100,15 +100,15 @@ public class GameManager : MonoBehaviour
         }
 
         //ShowOverPanel
-        if (EndKey == false)
-        {
-            endTitle.text = "You Failed!";
-            endingString = "외계인에게 습격 당하여 목숨이 위태롭다. 이대로 끝나는 건가…";
-        }
-        else
+        if (EndKey)
         {
             endTitle.text = "Mission Clear!";
             endingString = "탈출에 성공해 새로운 행성에 도착했다! 정말 긴 하루였다. 새로운 삶이 기대된다...";
+        }
+        else
+        {
+            endTitle.text = "You Failed!";
+            endingString = "외계인에게 습격 당하여 목숨이 위태롭다. 이대로 끝나는 건가…";
         }
 
         float fadeCount = 0; //처음 알파값
