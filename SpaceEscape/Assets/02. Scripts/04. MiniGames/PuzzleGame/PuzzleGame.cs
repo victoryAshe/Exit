@@ -5,39 +5,32 @@ using UnityEngine.UI;
 
 public class PuzzleGame : MonoBehaviour
 {
-    public GameObject PuzzleBoard;
+    public GameObject ShowUI;
     public GameObject Player;
+    public 
 
     // Start is called before the first frame update
     void Start()
     {
-        // Player와 Puzzleboard 거리 계산
-        //transform.position = Player.transform.position - PuzzleBoard.transform.position;
-        //float distance = Vector3.Distance(PlayerPos, PuzzleBoardpos);
+        Player = GameObject.FindWithTag("PLAYER");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 PuzzleBoardpos;
-        PuzzleBoardpos = PuzzleBoard.gameObject.transform.position;
-
         Vector3 PlayerPos;
         PlayerPos = Player.gameObject.transform.position;
 
-        if (Vector3.Distance(PlayerPos, PuzzleBoardpos) <= 3.0f)
+        if (Vector3.Distance(PlayerPos, transform.position) <= 8.0f)
         {
             // PuzzleUI 나타나게 만들기
-            PopupPuzzleUI();
+            ShowUI.SetActive(true);
+            GameManager.instance.isShowPanel = true;
         }
         else
-            return;
+        {
+            ShowUI.SetActive(false);
+            GameManager.instance.isShowPanel = false;
+        }
     }
-
-    public void PopupPuzzleUI()
-    {
-        gameObject.SetActive(true);
-    }
-
-
 }
