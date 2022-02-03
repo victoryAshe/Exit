@@ -5,14 +5,8 @@ using UnityEngine.UI;
 
 public class PuzzleGame : MonoBehaviour
 {
-    public GameObject PuzzleUI;
     public GameObject PuzzleBoard;
     public GameObject Player;
-
-    // 퍼즐 조각에 할당할 내용들
-    public GameObject PuzzlePosSet;
-    public GameObject PuzzlePieceSet;
-       
 
     // Start is called before the first frame update
     void Start()
@@ -42,9 +36,8 @@ public class PuzzleGame : MonoBehaviour
 
     public void PopupPuzzleUI()
     {
-        PuzzleUI.SetActive(true);
+        gameObject.SetActive(true);
     }
-
 
 
 }

@@ -1,37 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class PuzzlePiece : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IDropHandler
-
+public class PuzzlePiece : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
+    private RectTransform _myRect;
 
-    [SerializeField] public GameObject puzzlepiece;
-    private RectTransform rectTransform;
+    private Vector2 _rectBegin;
+    private Vector2 _moveBegin;
+    private Vector2 _moveOffset;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
+        //_parentRect = transform.parent.GetComponent<RectTransform>();
+        _myRect = transform.GetComponent<RectTransform>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
+        _rectBegin = _myRect.anchoredPosition;
+        _moveBegin = eventData.position;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    void IDragHandler.OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        _moveOffset = eventData.position - _moveBegin;
+        _myRect.anchoredPosition = _rectBegin + _moveOffset;
     }
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        Debug.Log("OnDrop");
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Debug.Log("OnEndDrag");
-    }
 }
