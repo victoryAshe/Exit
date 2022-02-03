@@ -12,8 +12,8 @@ public class pwCtrl : MonoBehaviour
     {
         data = gameObject.GetComponent<ObjectData>();
         password = data.password;
-        
-        
+
+
     }
 
     void Update()
