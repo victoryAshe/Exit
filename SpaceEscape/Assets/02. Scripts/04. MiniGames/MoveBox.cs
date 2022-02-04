@@ -17,7 +17,7 @@ public class MoveBox : MonoBehaviour
     }
     IEnumerator OpenTrue()
     {
-        for (int num = 0; num < 5; num++)
+        for (int num = 0; num < 10; num++)
         {
             Vector3 dir = EndPos.transform.position - transform.position;
             dir = dir.normalized;
@@ -34,7 +34,7 @@ public class MoveBox : MonoBehaviour
     IEnumerator OpenFalse()
     {
         //플레이어와 서랍사이의 거리가 3미만일동안
-        for (int num = 0; num < 5; num++)
+        for (int num = 0; num < 10; num++)
         {
             Vector3 dir = originPos - transform.position;
             dir = dir.normalized;

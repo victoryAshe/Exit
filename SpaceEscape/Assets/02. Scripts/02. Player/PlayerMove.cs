@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript || GameManager.instance.isShowBullet) return;
+        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript) return;
 
         Move();
 

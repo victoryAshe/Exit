@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PuzzleGame : MonoBehaviour
+public class AlphaGame : MonoBehaviour
 {
     public GameObject ShowUI;
     public GameObject Player;
@@ -23,11 +22,14 @@ public class PuzzleGame : MonoBehaviour
         if (Vector3.Distance(PlayerPos, transform.position) <= 4.0f)
         {
             // PuzzleUI 나타나게 만들기
+            Debug.Log("true");
+            Debug.Log("true");
             ShowUI.SetActive(true);
             GameManager.instance.isShowPanel = true;
         }
         else
         {
+            Debug.Log("false");
             ShowUI.SetActive(false);
             GameManager.instance.isShowPanel = false;
         }

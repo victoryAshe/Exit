@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
     public bool isGamePaused;
     public bool isShowScript;
     public bool isShowPanel;
-    public bool isShowBullet;
 
     public Text timeText;
     public float minute = 0f;  public float second = 0f;
