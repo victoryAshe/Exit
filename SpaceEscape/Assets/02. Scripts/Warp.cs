@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class warp : MonoBehaviour
+public class Warp : MonoBehaviour
 {
     public GameObject StartPos;
     public GameObject EndPos;
