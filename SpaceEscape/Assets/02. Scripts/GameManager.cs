@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -63,11 +64,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //test
-        //SetTimer(1, 30);
+        //for hotkey
+        if (SceneManager.GetActiveScene().name == "Room2")
+        {
+            GameObject.FindWithTag("PLAYER").transform.position = new Vector3(17.2800007f, -1.05999994f, -10.6000004f);
+        }
 
-        //test
-        CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
+            //test
+            //SetTimer(1, 30);
+
+            //test
+            CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
     }
 
     void Update()

@@ -26,7 +26,7 @@ public class CloseToLight : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, Light.transform.position) < 3.0f)
+        if (Light && Vector3.Distance(transform.position, Light.transform.position) < 3.0f)
             CheckChanging();
     }
 
@@ -46,13 +46,14 @@ public class CloseToLight : MonoBehaviour
         mat.SetTexture("_EmissionMap", targetT);
         mat.SetTexture("_DetailAlbedoMap", targetT);
 
-        gui.OnNotification("캡틴의 액자에서 빛이 난다. 무슨 의미가 있는 것 같다.");
 
         while (Vector3.Distance(transform.position, Light.transform.position) < 3.0f)
         {
             yield return new WaitForSeconds(0.1f);
             mat.SetFloat("_Metallic", mat.GetFloat("_Metallic") + 0.01f);
         }
+        gui.OnNotification("캡틴의 액자에서 빛이 난다." + System.Environment.NewLine + "무슨 의미가 있는 것 같다.");
+
         StartCoroutine(ReturnMaterial());
         changing = false;
 

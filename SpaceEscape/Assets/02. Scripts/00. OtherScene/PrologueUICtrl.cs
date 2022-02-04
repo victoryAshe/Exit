@@ -9,10 +9,12 @@ public class PrologueUICtrl : MonoBehaviour
     public Text showText01;
     public Text showText02;
     public Button startNew;
+    public Button skip;
 
     void Start()
     {
         startNew.onClick.AddListener(() => OnClickStart());
+        skip.onClick.AddListener(() => OnClickSkip());
 
         StartCoroutine(FadeIn(showText01));
 
@@ -26,6 +28,7 @@ public class PrologueUICtrl : MonoBehaviour
     void OnClickStart()
     {
         SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
     }
 
     IEnumerator FadeIn(Text target)
@@ -85,5 +88,16 @@ public class PrologueUICtrl : MonoBehaviour
         }
 
         startNew.gameObject.SetActive(true);
+    }
+
+    void OnClickSkip()
+    {
+        StopAllCoroutines();
+        showText01.gameObject.SetActive(false);
+        showText02.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        showText02.GetComponent<RectTransform>().eulerAngles = Vector3.zero;
+        skip.gameObject.SetActive(false);
+        startNew.gameObject.SetActive(true);
+            
     }
 }
