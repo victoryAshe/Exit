@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class ScriptManager : MonoBehaviour
 {
 
-
-
     //Dictionary<int objectId, Talk[]>: questId에 따라 objectId별로 talk을 선언
     public Dictionary<int, string> Script = new Dictionary<int, string>()
     {
