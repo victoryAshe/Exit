@@ -26,13 +26,15 @@ public class GetId : MonoBehaviour
     {
         if(Input.GetKeyDown(number))
         {
-            int index = int.Parse(number);
+            int index = int.Parse(number)-1;
             if (invenUI[index].GetComponent<Image>().sprite)
             {
                 inven.InvenActive = true;
+                GameManager.instance.isShowScript = true;
                 string name = invenUI[index].GetComponent<Image>().sprite.name;
                 int objectId = int.Parse(invenUI[index].GetComponent<Image>().sprite.name);
                 inven.objectId = objectId;
+                inven.number = index;
             }
 
 

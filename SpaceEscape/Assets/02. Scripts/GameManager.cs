@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     public bool isGamePaused;
     public bool isShowScript;
+    public bool isShowPanel;
 
     public Text timeText;
     public float minute = 0f;  public float second = 0f;
@@ -63,11 +65,17 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //test
-        //SetTimer(1, 30);
+        //for hotkey
+        if (SceneManager.GetActiveScene().name == "Room2")
+        {
+            GameObject.FindWithTag("PLAYER").transform.position = new Vector3(17.2800007f, -1.05999994f, -10.6000004f);
+        }
 
-        //test
-        CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
+            //test
+            //SetTimer(1, 30);
+
+            //test
+            CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
     }
 
     void Update()
@@ -90,7 +98,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator GameOver()
+    public IEnumerator GameOver()
     {
         //Set Enemy Active False
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("ENEMY");
@@ -100,15 +108,15 @@ public class GameManager : MonoBehaviour
         }
 
         //ShowOverPanel
-        if (EndKey == false)
-        {
-            endTitle.text = "You Failed!";
-            endingString = "외계인에게 습격 당하여 목숨이 위태롭다. 이대로 끝나는 건가…";
-        }
-        else
+        if (EndKey)
         {
             endTitle.text = "Mission Clear!";
             endingString = "탈출에 성공해 새로운 행성에 도착했다! 정말 긴 하루였다. 새로운 삶이 기대된다...";
+        }
+        else
+        {
+            endTitle.text = "You Failed!";
+            endingString = "외계인에게 습격 당하여 목숨이 위태롭다. 이대로 끝나는 건가…";
         }
 
         float fadeCount = 0; //처음 알파값
