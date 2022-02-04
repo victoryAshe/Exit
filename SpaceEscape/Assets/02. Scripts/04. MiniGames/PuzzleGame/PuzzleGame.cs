@@ -25,11 +25,13 @@ public class PuzzleGame : MonoBehaviour
             // PuzzleUI 나타나게 만들기
             ShowUI.SetActive(true);
             GameManager.instance.isShowPanel = true;
+            GameManager.instance.isShowBullet = true;
         }
         else
         {
             ShowUI.SetActive(false);
             GameManager.instance.isShowPanel = false;
+            GameManager.instance.isShowBullet = false;
         }
     }
 }
