@@ -22,5 +22,6 @@ public class HotKey : MonoBehaviour
             SceneManager.LoadScene("InGame 2");
             SceneManager.LoadScene("Player", LoadSceneMode.Additive);
         }
+        
     }
 }
