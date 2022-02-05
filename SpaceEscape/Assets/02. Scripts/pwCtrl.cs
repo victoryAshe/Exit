@@ -8,14 +8,17 @@ using TMPro;
 public class pwCtrl : MonoBehaviour
 {
     private string password;
+    private int id;
     public GameObject keyObject;
 
     public GameObject pwPanel;
     public Button exit;
     public TMP_InputField input;
+    TextMeshProUGUI hintText;
 
     public Transform door;  private float speed = 5.0f;
     public Transform endPos;
+    Transform player;
 
     Material mat;
 
@@ -25,9 +28,10 @@ public class pwCtrl : MonoBehaviour
     void Start()
     {
         data = GetComponent<ObjectData>();
+        id = data.objectId;
         password = data.password;
 
-        GameObject canvas = GameObject.Find("Canvas");
+        GameObject canvas = GameObject.Find("UIcanvas");
         pwPanel = canvas.transform.Find("InputPanel").gameObject;
         input = pwPanel.GetComponentInChildren<TMP_InputField>();
         exit = pwPanel.GetComponentInChildren<Button>();
@@ -38,22 +42,49 @@ public class pwCtrl : MonoBehaviour
 
         mat = gameObject.GetComponent<MeshRenderer>().material;
 
+        player = GameObject.FindWithTag("PLAYER").transform;
+
+        //hintText 변경
+        hintText = pwPanel.GetComponentInChildren<TextMeshProUGUI>();
+        if (id == 131 || id == 132)
+            hintText.text = "";
+        else if (id == 208 || id == 209)
+            hintText.text = "[Hint] Array Num";
+        else if (id == 305)
+            hintText.text = "[Hint] 지금은 __C, The Ark의 함장의 ID는 ______";
+
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && GameObject.Find(data.keyId.ToString()))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            keyObject = GameObject.Find(data.keyId.ToString());
-
-            if (Vector3.Distance(keyObject.transform.position, transform.position) < 5.0f)
-            {
-                mat.SetColor("_EmissionColor", Color.green);
-                StartCoroutine(GoInput());
-            }
-
+            if (data.hasKey)
+                HasKey();
+            else
+                HasntKey();
         }
     }
+
+    void HasKey()
+    {
+        if (GameObject.Find(data.keyId.ToString())
+            && Vector3.Distance(GameObject.Find(data.keyId.ToString()).transform.position, transform.position) < 5.0f)
+        {
+            mat.SetColor("_EmissionColor", Color.green);
+            StartCoroutine(GoInput());
+        }
+    }
+
+    void HasntKey()
+    {
+        if (Vector3.Distance(player.position, transform.position) < 5.0f)
+        {
+            mat.SetColor("_EmissionColor", Color.green);
+            StartCoroutine(GoInput());
+        }
+    }
+
 
     IEnumerator GoInput()
     {
@@ -100,8 +131,17 @@ public class pwCtrl : MonoBehaviour
             Vector3 dir = (endPos.position - door.position).normalized;
             door.position += dir * Time.deltaTime * speed; 
         }
-        yield return new WaitForSeconds(1.5f);
-        GameManager.instance.EndKey = true;
-        StartCoroutine(GameManager.instance.GameOver());
+
+        if (data.hasKey)
+        {
+            //Game Clear
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.EndKey = true;
+            StartCoroutine(GameManager.instance.GameOver());
+        }
+        else
+            GameManager.instance.isShowScript = false;
+
+
     }
 }

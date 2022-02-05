@@ -5,33 +5,26 @@ using UnityEngine;
 public class AlphaGame : MonoBehaviour
 {
     public GameObject ShowUI;
-    public GameObject Player;
+    public Transform Player;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindWithTag("PLAYER");
+        Player = GameObject.FindWithTag("PLAYER").transform;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        Vector3 PlayerPos;
-        PlayerPos = Player.transform.position;
-
-        if (Vector3.Distance(PlayerPos, transform.position) <= 4.0f)
+        if (Vector3.Distance(Player.position, transform.position) <= 4.0f)
         {
-            // PuzzleUI 나타나게 만들기
-            Debug.Log("true");
-            Debug.Log("true");
             ShowUI.SetActive(true);
-            GameManager.instance.isShowPanel = true;
+            GameManager.instance.isShowAlpha = true;
+
         }
         else
         {
-            Debug.Log("false");
             ShowUI.SetActive(false);
-            GameManager.instance.isShowPanel = false;
+            GameManager.instance.isShowAlpha = false;
         }
     }
 }
