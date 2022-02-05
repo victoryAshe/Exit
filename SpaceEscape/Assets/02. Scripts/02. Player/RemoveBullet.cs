@@ -8,7 +8,7 @@ public class RemoveBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if (coll.collider.CompareTag("BULLET"))
+        if (coll.collider.CompareTag("WORLD"))
         {
             //첫 충돌 지점의 정보 추출
             ContactPoint cp = coll.GetContact(0);
@@ -20,7 +20,8 @@ public class RemoveBullet : MonoBehaviour
             GameObject spark = Instantiate(sparkEffect, cp.point, rot);
             Destroy(spark, 0.5f);
 
-            Destroy(coll.gameObject);
+            Destroy(gameObject);
+
         }
     }
 }
