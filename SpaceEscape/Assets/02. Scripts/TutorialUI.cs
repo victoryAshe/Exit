@@ -34,7 +34,7 @@ public class TutorialUI : MonoBehaviour
         // NexrButton 누르면 다음 이미지로 변경
         image.sprite = Resources.Load<Sprite>("TutorialImage/Tutorial(" + index + ")");
 
-        if (index == 5)
+        if (index == 6)
         {
             NextButton.gameObject.SetActive(false);
         }
@@ -55,7 +55,7 @@ public class TutorialUI : MonoBehaviour
         {
             UndoButton.gameObject.SetActive(false);
         }
-        if (index == 4)
+        if (index == 5)
         {
             NextButton.gameObject.SetActive(true);
         }
