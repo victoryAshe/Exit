@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4404,6 +4404,7 @@ GameObject:
   - component: {fileID: 302131436}
   - component: {fileID: 302131435}
   - component: {fileID: 302131438}
+  - component: {fileID: 302131439}
   m_Layer: 6
   m_Name: 202
   m_TagString: Untagged
@@ -4506,6 +4507,22 @@ MonoBehaviour:
   hasKey: 1
   keyId: 0
   password: 205028
+--- !u!114 &302131439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302131433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3f19dfa2d81b146a0a27e3be6e488a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPanel: {fileID: 0}
+  panels: []
+  oButtons: []
+  cButtons: []
 --- !u!1 &304285392
 GameObject:
   m_ObjectHideFlags: 0
@@ -6512,7 +6529,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.94171464, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -8513,7 +8530,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.94171464, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -10202,7 +10219,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.94171464, a: 1}
   m_Intensity: 1.5
-  m_Range: 20
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -20645,7 +20662,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.94171464, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -21671,7 +21688,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.94171464, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -23098,7 +23115,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.7783019, g: 1, b: 0.94171464, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 15
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

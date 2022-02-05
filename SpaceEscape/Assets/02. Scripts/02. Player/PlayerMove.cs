@@ -14,7 +14,7 @@ public class PlayerMove : MonoBehaviour
     public int level = 1;   public TextMeshProUGUI LvText;
     public int killCount = 0;
     public TextMeshProUGUI hpText;
-    public int hp = 20; int maxHp = 20;
+    public int hp = 20; public int maxHp = 20;
     public Image hpImage;
     public GameObject bulletPrefab;
 
@@ -100,8 +100,9 @@ public class PlayerMove : MonoBehaviour
         hp += value;
         if (hp > maxHp)
         {
-            hp -= (hp - maxHp);
+            hp = maxHp;
         }
+        DisplayHp();
 
     }
 

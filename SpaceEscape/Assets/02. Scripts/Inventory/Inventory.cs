@@ -12,6 +12,9 @@ public class Inventory : MonoBehaviour
 
     public GameObject ItemPos;
 
+    private int healPower = 15;
+    PlayerMove pm;
+
     // 인벤토리 안에 각 칸을 딕셔너리로 설정
     public Dictionary<int, itemData> inventory = new Dictionary<int, itemData>();
 
@@ -33,7 +36,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-
+        pm = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
@@ -74,13 +77,14 @@ public class Inventory : MonoBehaviour
             
     }
 
-    // R버튼을 누르면
-    // DelItem 함수 호출
+    // R 누르면: DelItem 함수 호출
     public void DelItem()
     {
         // 아이템 갯수가 0개 이하면 인벤토리에서 삭제
         if (inventory[objectId].quantity <= 1)
         {
+            if (objectId == 0) pm.OnHeal(healPower);
+            
             Destroy(GameObject.Find(objectId.ToString()));
             inventory.Remove(objectId);
             invenUI[number].GetComponent<Image>().sprite = null;
@@ -93,8 +97,7 @@ public class Inventory : MonoBehaviour
 
     }
 
-    // Q버튼을 누르면
-    // HoldItem 호출
+    // Q 누르면: HoldItem 호출
     public void HoldItem()
     {
         if (GameObject.Find("Item").transform.Find(objectId.ToString()))
