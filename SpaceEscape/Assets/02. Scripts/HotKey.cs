@@ -17,5 +17,10 @@ public class HotKey : MonoBehaviour
             SceneManager.LoadScene("Room2");
             SceneManager.LoadScene("Player", LoadSceneMode.Additive);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SceneManager.LoadScene("InGame 2");
+            SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+        }
     }
 }

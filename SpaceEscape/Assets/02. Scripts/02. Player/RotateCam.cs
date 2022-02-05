@@ -15,7 +15,8 @@ public class RotateCam : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript || GameManager.instance.isShowPanel) return;
+        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript 
+            || GameManager.instance.isShowPanel|| GameManager.instance.isShowAlpha) return;
 
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
