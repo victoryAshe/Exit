@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.2996273, g: 0.25062415, b: 0.20409787, a: 1}
+  m_IndirectSpecularColor: {r: 0.29965606, g: 0.25063896, b: 0.20415309, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26ea9fd52ea48b469b131a64df22956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prologue: {fileID: 531843762}
+  tutorial: {fileID: 531843762}
   startNew: {fileID: 2126368875}
   quit: {fileID: 353126860}
   setUp: {fileID: 2108449921}
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 531843763}
   - component: {fileID: 531843762}
   m_Layer: 5
-  m_Name: Prologue_Btn
+  m_Name: Tutorial_Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1522,7 +1522,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Prologue
+  m_Text: Tutorial
 --- !u!222 &1116531501
 CanvasRenderer:
   m_ObjectHideFlags: 0
