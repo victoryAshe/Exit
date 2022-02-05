@@ -10,6 +10,7 @@ public class pwCtrl : MonoBehaviour
     private string password;
     private int id;
     public GameObject keyObject;
+    public bool isTrue;
 
     public GameObject pwPanel;
     public Button exit;
@@ -90,6 +91,7 @@ public class pwCtrl : MonoBehaviour
     {
         GameManager.instance.isShowScript = true;
         yield return new WaitForSeconds(1.5f);
+        isTrue = true;
         pwPanel.SetActive(true);
         
     }
@@ -99,13 +101,19 @@ public class pwCtrl : MonoBehaviour
         if (pw == password)
         {
             gui.OnNotification("맞는 비밀번호 입니다.");
-            StartCoroutine(OpenDoor());
+            input.text = "Enter Password...";
+
+            if (isTrue)
+                StartCoroutine(OpenDoor());
+            else
+                return;
         }
         else 
         {
             gui.OnNotification("틀린 비밀번호 입니다.");
             input.text = "Enter Password...";
             pwPanel.SetActive(false);
+            isTrue = false;
             GameManager.instance.isShowScript = false;
             mat.SetColor("_EmissionColor", Color.yellow);
 
@@ -117,6 +125,7 @@ public class pwCtrl : MonoBehaviour
         pwPanel.SetActive(false);
         mat.SetColor("_EmissionColor", Color.yellow);
         GameManager.instance.isShowScript = false;
+        isTrue = false;
 
     }
 
@@ -124,6 +133,7 @@ public class pwCtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         pwPanel.SetActive(false);
+        isTrue = false;
         //문 열기
         for (int i=0; i<100;i++)
         {
@@ -144,4 +154,6 @@ public class pwCtrl : MonoBehaviour
 
 
     }
+
+
 }

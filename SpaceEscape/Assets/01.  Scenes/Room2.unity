@@ -9772,6 +9772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyObject: {fileID: 0}
+  isTrue: 0
   pwPanel: {fileID: 0}
   exit: {fileID: 0}
   input: {fileID: 0}
@@ -29352,6 +29353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyObject: {fileID: 0}
+  isTrue: 0
   pwPanel: {fileID: 0}
   exit: {fileID: 0}
   input: {fileID: 0}
