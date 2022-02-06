@@ -8,12 +8,17 @@ public class GetId : MonoBehaviour
     public List<Button> invenUI;
     public string number;
 
+    AudioClip selectSfx;  //delItem은 deselect를 그대로 사용
+    private new AudioSource audio;  //AudioSource Component 저장 변수
+
     Inventory inven;
     // Start is called before the first frame update
     void Start()
     {
         inven = GameObject.Find("GameManager").GetComponent<Inventory>();
         invenUI = inven.invenUI;
+        audio = GetComponent<AudioSource>();
+        selectSfx = inven.selectSfx;
     }
 
     // Update is called once per frame
@@ -31,6 +36,7 @@ public class GetId : MonoBehaviour
 
             if (invenUI[index].GetComponent<Image>().sprite)
             {
+                audio.PlayOneShot(selectSfx, 0.1f);
                 inven.InvenActive = true;
                 GameManager.instance.isShowScript = true;
                 string name = invenUI[index].GetComponent<Image>().sprite.name;

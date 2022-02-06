@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class ScriptManager : MonoBehaviour
 {
 
@@ -45,6 +46,9 @@ public class ScriptManager : MonoBehaviour
     GameObject item;    GameObject itemParent;  ObjectData data;    
     GameObject player;
 
+    public AudioClip onscriptSfx;       //음원
+    private new AudioSource audio;  //AudioSource Component 저장 변수
+
     Inventory inven;
     InGameUICtrl gui;
 
@@ -56,6 +60,8 @@ public class ScriptManager : MonoBehaviour
         gui = GetComponent<InGameUICtrl>();
         player = GameObject.FindWithTag("PLAYER");
         itemParent = GameObject.Find("Item");
+        audio = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -74,6 +80,7 @@ public class ScriptManager : MonoBehaviour
                 else if (hit.layer == 3 << 1)
                 {
                     int id = hit.GetComponent<ObjectData>().objectId;
+                    audio.PlayOneShot(onscriptSfx, 3.0f);
                     gui.OnNotification(Script[id]);
                 }
             }
@@ -83,6 +90,7 @@ public class ScriptManager : MonoBehaviour
 
     public void ShowScript(GameObject item)
     {
+        audio.PlayOneShot(onscriptSfx, 3.0f);
         GameManager.instance.isShowScript = true;
 
         this.item = item;
