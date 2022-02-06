@@ -31,6 +31,9 @@ public class EnemyFSM : MonoBehaviour
     //## DropItem ##
     public GameObject[] Items = new GameObject[] { };
 
+    public AudioClip damagedSFx; public AudioClip dieSFx; public AudioClip hitSFx; public AudioClip idleSFx;
+    private new AudioSource audio;  //AudioSource Component 저장 변수
+
 
     CharacterController cc;
     Animator anim;
@@ -48,6 +51,8 @@ public class EnemyFSM : MonoBehaviour
         maxHp = level*15;    hp = maxHp;
         attackPower = level*3;
         lvText.text = "LV. "+level.ToString();
+        audio = GetComponent<AudioSource>();
+
     }
 
     void Update()
@@ -71,15 +76,14 @@ public class EnemyFSM : MonoBehaviour
             case EnemyState.Damaged:
                 Damaged();
                 break;
-            //case EnemyState.Die:
-            //    Die();
-            //    break;
+
         }
 
     }
 
     void Idle()
     {
+        
         if (Vector3.Distance(transform.position, player.position) < findDistance)
         {
             m_State = EnemyState.Move;
@@ -132,11 +136,13 @@ public class EnemyFSM : MonoBehaviour
 
     public void AttackAction()
     {
+        audio.PlayOneShot(hitSFx, 0.1f);
         player.GetComponent<PlayerMove>().DamageAction(attackPower);
     }
 
     void Damaged()
     {
+        audio.PlayOneShot(damagedSFx, 0.2f);
         StartCoroutine(DamageProcess());
     }
 
@@ -176,6 +182,9 @@ public class EnemyFSM : MonoBehaviour
 
     IEnumerator DieProcess()
     {
+        audio.loop = false;
+        audio.Pause();
+        audio.PlayOneShot(dieSFx, 1.0f);
         cc.enabled = false;
         
         yield return new WaitForSeconds(2.0f);
