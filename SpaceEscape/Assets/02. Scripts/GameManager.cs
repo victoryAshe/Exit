@@ -29,11 +29,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public bool isGamePaused;
-    public bool isShowScript;
-    public bool isShowPanel;
-    public bool isShowAlpha;
-
+    public bool isGamePaused;   public bool isShowScript;
+    public bool isShowPanel;    public bool isShowAlpha;
+    public int questId = 1;
 
     public Text timeText;
     public float minute = 0f;  public float second = 0f;
@@ -67,7 +65,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //test
-        //SetTimer(1, 30);
+        SetTimer(5, 0);
 
         //test
         CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);

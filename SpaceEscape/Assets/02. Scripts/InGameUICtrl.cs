@@ -112,4 +112,14 @@ public class InGameUICtrl : MonoBehaviour
 
 
     }
+
+    public void Newstart()
+    {
+        StartCoroutine(OnClickStart());
+    }
+
+    public void NewQuit()
+    {
+        StartCoroutine(OnClickQuit());
+    }
 }
