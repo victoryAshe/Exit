@@ -3,7 +3,9 @@ guid: f0a24952491749d4a86807f786866fad
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ElevatorClip: {fileID: 8300000, guid: ad9f1927a624b461292de652c3954813, type: 3}
+  - EndPos: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
