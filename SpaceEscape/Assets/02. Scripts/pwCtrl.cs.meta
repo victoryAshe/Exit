@@ -5,6 +5,12 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - keyObject: {fileID: 6548637232614498797, guid: e5d5ea73d97cccc4192c5b463fce56a8, type: 3}
+  - pwPanel: {instanceID: 0}
+  - exit: {instanceID: 0}
+  - input: {instanceID: 0}
+  - door: {instanceID: 0}
+  - endPos: {instanceID: 0}
+  - DoorOpenClip: {fileID: 8300000, guid: 6ed3a8d2592de47b09ade6a36074ae8c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

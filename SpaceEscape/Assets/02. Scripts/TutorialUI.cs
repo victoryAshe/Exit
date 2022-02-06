@@ -13,12 +13,17 @@ public class TutorialUI : MonoBehaviour
     public Image image;
     public int index = 1;
 
+    public AudioClip ButtonClip;  
+    private new AudioSource audio;
+
     void Start()
     {
-        NextButton.onClick.AddListener(() => OnClickNext());
-        UndoButton.onClick.AddListener(() => OnClickUndo());
-        StartButton.onClick.AddListener(() => OnClickStart());
+        NextButton.onClick.AddListener(() => StartCoroutine(OnClickNext()));
+        UndoButton.onClick.AddListener(() => StartCoroutine(OnClickUndo()));
+        StartButton.onClick.AddListener(() => StartCoroutine(OnClickStart()));
         image = GetComponent<Image>();
+
+        audio = GetComponent<AudioSource>();
         
     }
 
@@ -28,8 +33,11 @@ public class TutorialUI : MonoBehaviour
     }
 
 
-    void OnClickNext()
+    IEnumerator OnClickNext()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         index += 1;
         // NexrButton 누르면 다음 이미지로 변경
         image.sprite = Resources.Load<Sprite>("TutorialImage/Tutorial(" + index + ")");
@@ -45,8 +53,11 @@ public class TutorialUI : MonoBehaviour
 
     }
 
-    void OnClickUndo()
+    IEnumerator OnClickUndo()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         index -= 1;
         // UndoButton 누르면 전 이전 이미지로 변경
         image.sprite = Resources.Load<Sprite>("TutorialImage/Tutorial(" + index + ")");
@@ -61,8 +72,11 @@ public class TutorialUI : MonoBehaviour
         }
     }
 
-    void OnClickStart()
+    IEnumerator OnClickStart()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         // 플레이 씬 열기
         SceneManager.LoadScene("InGame");
         SceneManager.LoadScene("Player", LoadSceneMode.Additive);

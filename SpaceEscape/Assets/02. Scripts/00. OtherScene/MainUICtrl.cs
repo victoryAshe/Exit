@@ -14,6 +14,9 @@ public class MainUICtrl : MonoBehaviour
     public GameObject setupPanel;
 
     public Image logo;
+    //오디오 부분
+    public AudioClip ButtonClip;     
+    private new AudioSource audio;  
 
     void Awake()
     {
@@ -24,11 +27,12 @@ public class MainUICtrl : MonoBehaviour
     void Start()
     {
 
-        tutorial.onClick.AddListener(() => OnClickTuto());
-        startNew.onClick.AddListener(() => OnClickStart());
-        quit.onClick.AddListener(() => OnClickQuit());
-        setUp.onClick.AddListener(() => OnClickSetUp());
+        tutorial.onClick.AddListener(() => StartCoroutine(OnClickTuto()));
+        startNew.onClick.AddListener(() => StartCoroutine(OnClickStart()));
+        quit.onClick.AddListener(() => StartCoroutine(OnClickQuit()));
+        setUp.onClick.AddListener(() => StartCoroutine(OnClickSetUp()));
 
+        audio = GetComponent<AudioSource>();
 
     }
 
@@ -38,19 +42,27 @@ public class MainUICtrl : MonoBehaviour
             OnClickSetUp();
     }
 
-    void OnClickTuto()
+    IEnumerator OnClickTuto()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Tutorial");
+        
+
     }
 
-    void OnClickStart()
+    IEnumerator OnClickStart()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Prologue");
 
     }
 
-    void OnClickQuit()
+    IEnumerator OnClickQuit()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -58,8 +70,11 @@ public class MainUICtrl : MonoBehaviour
 #endif
     }
 
-    void OnClickSetUp()
+    IEnumerator OnClickSetUp()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         if (setupPanel.activeSelf == false)
             setupPanel.SetActive(true);
         else

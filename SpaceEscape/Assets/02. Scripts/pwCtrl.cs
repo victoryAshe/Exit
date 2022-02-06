@@ -26,11 +26,16 @@ public class pwCtrl : MonoBehaviour
     ObjectData data;
     InGameUICtrl gui;
 
+    public AudioClip DoorOpenClip;
+    private new AudioSource audio;
+
     void Start()
     {
+
         data = GetComponent<ObjectData>();
         id = data.objectId;
         password = data.password;
+        audio = GetComponent<AudioSource>();
 
         GameObject canvas = GameObject.Find("UIcanvas");
         pwPanel = canvas.transform.Find("InputPanel").gameObject;
@@ -131,6 +136,9 @@ public class pwCtrl : MonoBehaviour
 
     IEnumerator OpenDoor()
     {
+        audio.PlayOneShot(DoorOpenClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         yield return new WaitForSeconds(2.0f);
         pwPanel.SetActive(false);
         isTrue = false;
@@ -139,7 +147,9 @@ public class pwCtrl : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
             Vector3 dir = (endPos.position - door.position).normalized;
-            door.position += dir * Time.deltaTime * speed; 
+
+            door.position += dir * Time.deltaTime * speed;
+
         }
 
         if (data.hasKey)
@@ -147,6 +157,7 @@ public class pwCtrl : MonoBehaviour
             //Game Clear
             yield return new WaitForSeconds(1.5f);
             GameManager.instance.EndKey = true;
+
             StartCoroutine(GameManager.instance.GameOver());
         }
         else
