@@ -23,8 +23,6 @@ public class GameManager : MonoBehaviour
             if (isGameOver)
             {
                 //StartCoroutine(SoundFadeout());
-
-
                 StartCoroutine(GameOver());
             }
         }
@@ -68,16 +66,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //### for hotkey: 추후 삭제 ###
-        if (SceneManager.GetActiveScene().name == "Room2")
-        {
-            GameObject.FindWithTag("PLAYER").transform.position = new Vector3(30.023241f, -1.32402825f, -6.83601713f);
-        }        
-        else if (SceneManager.GetActiveScene().name == "InGame 2")
-        {
-            GameObject.FindWithTag("PLAYER").transform.position = new Vector3(3.66000009f, -0.629999995f, -25.7800007f);
-        }
-
         //test
         //SetTimer(1, 30);
 
