@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -187,7 +187,7 @@ MonoBehaviour:
   second: 0
   enemy: {fileID: 5007833584271194416, guid: e2f023d42c3d46445a6eaa247a1ec968, type: 3}
   enemies: {fileID: 481555650}
-  enemyQuantity: 3
+  enemyQuantity: 0
 --- !u!114 &10296525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,6 +588,7 @@ MonoBehaviour:
   input: {fileID: 0}
   door: {fileID: 1325753133}
   endPos: {fileID: 186393409}
+  DoorOpenClip: {fileID: 0}
 --- !u!1 &143702411
 GameObject:
   m_ObjectHideFlags: 0
@@ -10485,7 +10486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1894372981
 MeshCollider:
   m_ObjectHideFlags: 0
