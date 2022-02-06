@@ -12,11 +12,13 @@ public class PCctrl : MonoBehaviour
 
     void Start()
     {
+        /*
         for (int i = 0; i < oButtons.Length; i++)
         {
             oButtons[i].onClick.AddListener(() => OpenPanel(i));
             cButtons[i].onClick.AddListener(() => ClosePanel(i));
         }
+        */
 
         player = GameObject.FindWithTag("PLAYER").transform;
     }
@@ -35,12 +37,12 @@ public class PCctrl : MonoBehaviour
         }
     }
 
-    void OpenPanel(int idx)
+    public void OpenPanel(int idx)
     {
         panels[idx].SetActive(true);
     }
 
-    void ClosePanel(int idx)
+    public void ClosePanel(int idx)
     {
         panels[idx].SetActive(false);
     }
