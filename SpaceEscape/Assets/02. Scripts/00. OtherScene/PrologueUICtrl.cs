@@ -11,22 +11,30 @@ public class PrologueUICtrl : MonoBehaviour
     public Button startNew;
     public Button skip;
 
+    public AudioClip ButtonClip;
+    private new AudioSource audio;
+
     void Start()
     {
-        startNew.onClick.AddListener(() => OnClickStart());
-        skip.onClick.AddListener(() => OnClickSkip());
+        startNew.onClick.AddListener(() => StartCoroutine(OnClickStart()));
+        skip.onClick.AddListener(() => StartCoroutine(OnClickSkip()));
 
         StartCoroutine(FadeIn(showText01));
+
+        audio = GetComponent<AudioSource>();
 
     }
 
     void Update()
     {
-        
+
     }
 
-    void OnClickStart()
+    IEnumerator OnClickStart()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         SceneManager.LoadScene("InGame");
         SceneManager.LoadScene("Player", LoadSceneMode.Additive);
     }
@@ -90,14 +98,17 @@ public class PrologueUICtrl : MonoBehaviour
         startNew.gameObject.SetActive(true);
     }
 
-    void OnClickSkip()
+    IEnumerator OnClickSkip()
     {
+        audio.PlayOneShot(ButtonClip, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+
         StopAllCoroutines();
         showText01.gameObject.SetActive(false);
         showText02.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
         showText02.GetComponent<RectTransform>().eulerAngles = Vector3.zero;
         skip.gameObject.SetActive(false);
         startNew.gameObject.SetActive(true);
-            
+
     }
 }

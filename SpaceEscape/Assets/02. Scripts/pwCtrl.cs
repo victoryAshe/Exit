@@ -161,7 +161,6 @@ public class pwCtrl : MonoBehaviour
         else
         {
             GameManager.instance.isShowScript = false;
-            gameObject.GetComponent<pwCtrl>().enabled = false;
         }
 
 

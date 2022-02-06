@@ -39,7 +39,7 @@ public class MainUICtrl : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            OnClickSetUp();
+            StartCoroutine(OnClickSetUp());
     }
 
     IEnumerator OnClickTuto()
