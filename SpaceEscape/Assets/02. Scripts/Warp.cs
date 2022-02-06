@@ -9,9 +9,14 @@ public class Warp : MonoBehaviour
     public GameObject EndPos;
     public Image Black;
 
+    public AudioClip WarpClip;
+    private new AudioSource audio;
+
     void Start()
     {
         Black = GameObject.Find("UIcanvas").transform.Find("blackPanel").GetComponent<Image>();
+
+        audio = GetComponent<AudioSource>();
     }
 
     void warpRoutine()
@@ -26,6 +31,9 @@ public class Warp : MonoBehaviour
         if (col.gameObject.CompareTag("PLAYER"))
         {
             StartPos = col.gameObject;
+
+            audio.PlayOneShot(WarpClip, 1.0f);
+            
 
             //2초뒤 warp 실행
             StartCoroutine(FadeIn());

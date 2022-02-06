@@ -3,7 +3,11 @@ guid: 36fec178e5e97bf4ca53f8d821e35544
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - StartPos: {instanceID: 0}
+  - EndPos: {instanceID: 0}
+  - Black: {instanceID: 0}
+  - WarpClip: {fileID: 8300000, guid: 6ed3a8d2592de47b09ade6a36074ae8c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

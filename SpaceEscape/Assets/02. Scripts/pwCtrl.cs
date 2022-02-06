@@ -134,8 +134,7 @@ public class pwCtrl : MonoBehaviour
 
     IEnumerator OpenDoor()
     {
-        audio.PlayOneShot(DoorOpenClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        audio.PlayOneShot(DoorOpenClip, 2.0f);
 
         yield return new WaitForSeconds(2.0f);
         pwPanel.SetActive(false);

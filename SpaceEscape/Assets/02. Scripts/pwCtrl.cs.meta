@@ -10,7 +10,7 @@ MonoImporter:
   - input: {instanceID: 0}
   - door: {instanceID: 0}
   - endPos: {instanceID: 0}
-  - DoorOpenClip: {fileID: 8300000, guid: 6ed3a8d2592de47b09ade6a36074ae8c, type: 3}
+  - DoorOpenClip: {fileID: 8300000, guid: 671b1348f49834394bbb9ed14b947df7, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
