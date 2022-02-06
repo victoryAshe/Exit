@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
+    private GameObject UIcanvas;
     public bool isGameOver; public Image overPanel;
     public bool EndKey;
     public Text endTitle;    public Text endingText;
@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public bool isGamePaused;
     public bool isShowScript;
     public bool isShowPanel;
+    public bool isShowAlpha;
+
 
     public Text timeText;
     public float minute = 0f;  public float second = 0f;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+
         // 싱글턴
         if (instance == null)
         {
@@ -65,17 +68,22 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //for hotkey
+        //### for hotkey: 추후 삭제 ###
         if (SceneManager.GetActiveScene().name == "Room2")
         {
-            GameObject.FindWithTag("PLAYER").transform.position = new Vector3(17.2800007f, -1.05999994f, -10.6000004f);
+            GameObject.FindWithTag("PLAYER").transform.position = new Vector3(30.023241f, -1.32402825f, -6.83601713f);
+        }        
+        else if (SceneManager.GetActiveScene().name == "InGame 2")
+        {
+            GameObject.FindWithTag("PLAYER").transform.position = new Vector3(3.66000009f, -0.629999995f, -25.7800007f);
         }
 
-            //test
-            //SetTimer(1, 30);
+        //test
+        //SetTimer(1, 30);
 
-            //test
-            CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
+        //test
+        CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
+
     }
 
     void Update()

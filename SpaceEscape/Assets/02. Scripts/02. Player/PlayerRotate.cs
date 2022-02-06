@@ -15,7 +15,7 @@ public class PlayerRotate : MonoBehaviour
     void Update()
     {
         if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused 
-            || GameManager.instance.isShowScript || GameManager.instance.isShowPanel) return;
+            || GameManager.instance.isShowScript || GameManager.instance.isShowPanel|| GameManager.instance.isShowAlpha) return;
 
         float mouseX = Input.GetAxis("Mouse X");
         mx += mouseX * rotSpeed * Time.deltaTime;

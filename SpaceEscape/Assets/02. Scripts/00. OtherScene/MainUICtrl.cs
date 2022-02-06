@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainUICtrl : MonoBehaviour
 {
-    public Button prologue;
+    public Button tutorial;
     public Button startNew;
     public Button quit;
     public Button setUp;
@@ -24,7 +24,7 @@ public class MainUICtrl : MonoBehaviour
     void Start()
     {
 
-        prologue.onClick.AddListener(() => OnClickPro());
+        tutorial.onClick.AddListener(() => OnClickTuto());
         startNew.onClick.AddListener(() => OnClickStart());
         quit.onClick.AddListener(() => OnClickQuit());
         setUp.onClick.AddListener(() => OnClickSetUp());
@@ -38,15 +38,14 @@ public class MainUICtrl : MonoBehaviour
             OnClickSetUp();
     }
 
-    void OnClickPro()
+    void OnClickTuto()
     {
-        SceneManager.LoadScene("Prologue");
+        SceneManager.LoadScene("Tutorial");
     }
 
     void OnClickStart()
     {
-        SceneManager.LoadScene("InGame");
-        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Prologue");
 
     }
 

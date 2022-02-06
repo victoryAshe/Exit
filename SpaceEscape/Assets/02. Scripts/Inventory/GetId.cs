@@ -27,6 +27,8 @@ public class GetId : MonoBehaviour
         if(Input.GetKeyDown(number))
         {
             int index = int.Parse(number)-1;
+            if (index < 0) index = invenUI.Count-1;
+
             if (invenUI[index].GetComponent<Image>().sprite)
             {
                 inven.InvenActive = true;
