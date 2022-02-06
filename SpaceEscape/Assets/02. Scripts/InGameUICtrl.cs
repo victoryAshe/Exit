@@ -18,26 +18,38 @@ public class InGameUICtrl : MonoBehaviour
 
     public GameObject setupPanel;
 
+    public AudioClip ButtonClip;
+    private new AudioSource audio;
+
     void Start()
     {
-        startNew.onClick.AddListener(() => OnClickStart());
-        quit.onClick.AddListener(() => OnClickQuit());
-        setUp.onClick.AddListener(() => OnClickSetUp());
+        audio = GetComponent<AudioSource>();
+
+        startNew.onClick.AddListener(() => StartCoroutine(OnClickStart()));
+        quit.onClick.AddListener(() => StartCoroutine(OnClickQuit()));
+        setUp.onClick.AddListener(() => StartCoroutine(OnClickSetUp()));
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            OnClickSetUp();
+            StartCoroutine(OnClickSetUp());
     }
 
-    public void OnClickStart()
+    IEnumerator OnClickStart()
     {
+        audio.PlayOneShot(ButtonClip);
+        yield return new WaitForSeconds(0.5f);
+
         SceneManager.LoadScene("InGame");
     }
 
-    public void OnClickQuit()
+    IEnumerator OnClickQuit()
     {
+        audio.PlayOneShot(ButtonClip);
+        yield return new WaitForSeconds(0.5f);
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -45,8 +57,11 @@ public class InGameUICtrl : MonoBehaviour
 #endif
     }
 
-    void OnClickSetUp()
+    IEnumerator OnClickSetUp()
     {
+        audio.PlayOneShot(ButtonClip);
+        yield return new WaitForSeconds(0.5f);
+
         if (setupPanel.activeSelf == false)
         {
             GameManager.instance.isGamePaused = true;
@@ -82,7 +97,7 @@ public class InGameUICtrl : MonoBehaviour
     {
         yield return new WaitForSeconds(0.03f);
 
-        float fadeCount = 1.0f; //처음 알파값
+        float fadeCount = 0.5f; //처음 알파값
         NotificationField.color = new Color(0, 0, 0, fadeCount);
 
         while (fadeCount > 0)

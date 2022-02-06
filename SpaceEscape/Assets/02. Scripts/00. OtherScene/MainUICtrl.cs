@@ -26,13 +26,14 @@ public class MainUICtrl : MonoBehaviour
 
     void Start()
     {
+        audio = GetComponent<AudioSource>();
 
         tutorial.onClick.AddListener(() => StartCoroutine(OnClickTuto()));
         startNew.onClick.AddListener(() => StartCoroutine(OnClickStart()));
         quit.onClick.AddListener(() => StartCoroutine(OnClickQuit()));
         setUp.onClick.AddListener(() => StartCoroutine(OnClickSetUp()));
 
-        audio = GetComponent<AudioSource>();
+        
 
     }
 
@@ -45,7 +46,7 @@ public class MainUICtrl : MonoBehaviour
     IEnumerator OnClickTuto()
     {
         audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Tutorial");
         
 
@@ -54,7 +55,7 @@ public class MainUICtrl : MonoBehaviour
     IEnumerator OnClickStart()
     {
         audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Prologue");
 
     }
@@ -62,7 +63,7 @@ public class MainUICtrl : MonoBehaviour
     IEnumerator OnClickQuit()
     {
         audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -73,7 +74,7 @@ public class MainUICtrl : MonoBehaviour
     IEnumerator OnClickSetUp()
     {
         audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         if (setupPanel.activeSelf == false)
             setupPanel.SetActive(true);

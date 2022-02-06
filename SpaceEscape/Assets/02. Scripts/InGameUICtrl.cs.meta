@@ -3,7 +3,14 @@ guid: 55323dde98dac474f802a4a11b461027
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - startNew: {instanceID: 0}
+  - quit: {instanceID: 0}
+  - setUp: {instanceID: 0}
+  - NotificationField: {instanceID: 0}
+  - notification: {instanceID: 0}
+  - setupPanel: {instanceID: 0}
+  - ButtonClip: {fileID: 8300000, guid: 2842a97c1a176446cb3688fe1fbf4bce, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -32,7 +32,7 @@ public class PrologueUICtrl : MonoBehaviour
     IEnumerator OnClickStart()
     {
         audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         SceneManager.LoadScene("InGame");
         SceneManager.LoadScene("Player", LoadSceneMode.Additive);
@@ -100,7 +100,7 @@ public class PrologueUICtrl : MonoBehaviour
     IEnumerator OnClickSkip()
     {
         audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
 
         StopAllCoroutines();
         showText01.gameObject.SetActive(false);
