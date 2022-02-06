@@ -28,6 +28,8 @@ public class Warp : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        //Application.targetFrameRate = 30;
+
         if (col.gameObject.CompareTag("PLAYER"))
         {
             StartPos = col.gameObject;
@@ -69,5 +71,7 @@ public class Warp : MonoBehaviour
             Black.color = new Color(0, 0, 0, fadeCount);//해당 변수값으로 알파값 지정
         }
         Black.gameObject.SetActive(false);
+
+        //Application.targetFrameRate = 50;
     }
 }

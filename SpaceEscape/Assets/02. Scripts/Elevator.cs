@@ -24,7 +24,7 @@ public class Elevator : MonoBehaviour
         
         //yield return new WaitForSeconds(12.0f);
 
-        while (Vector3.Distance(EndPos.transform.position, transform.position) > 0)
+        while (Vector3.Distance(EndPos.transform.position, transform.position) >= 5.0f)
         {
             yield return new WaitForSeconds(0.01f);
             //startpos의 position을 계속 더해준다 
@@ -36,6 +36,7 @@ public class Elevator : MonoBehaviour
 
 
         }
+        Application.targetFrameRate = 60;
     }
 
     //player의 충돌을 감지하면
@@ -44,6 +45,7 @@ public class Elevator : MonoBehaviour
 
         if (other.gameObject.CompareTag("PLAYER"))
         {
+            Application.targetFrameRate = 30;
 
             other.gameObject.transform.parent = transform;
 
@@ -59,5 +61,6 @@ public class Elevator : MonoBehaviour
         {
             other.gameObject.transform.parent = null;
         }
+
     }
 }
