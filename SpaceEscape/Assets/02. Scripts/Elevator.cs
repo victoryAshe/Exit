@@ -10,7 +10,7 @@ public class Elevator : MonoBehaviour
     public float speed = 1.5f;
     IEnumerator ElevatorRoutine()
     {
-
+        yield return new WaitForSeconds(2f);
         while (Vector3.Distance(EndPos.transform.position, transform.position) > 0)
         {
             yield return new WaitForSeconds(0.01f);

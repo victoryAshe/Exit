@@ -7,7 +7,7 @@ using TMPro;
 
 public class pwCtrl : MonoBehaviour
 {
-    private string password;
+    public string password;
     private int id;
     public GameObject keyObject;
     public bool isTrue;
@@ -103,15 +103,13 @@ public class pwCtrl : MonoBehaviour
 
     public void CheckInput(string pw)
     {
+        if (!isTrue) return;
+
         if (pw == password)
         {
             gui.OnNotification("맞는 비밀번호 입니다.");
             input.text = "Enter Password...";
-
-            if (isTrue)
-                StartCoroutine(OpenDoor());
-            else
-                return;
+            StartCoroutine(OpenDoor());
         }
         else 
         {
@@ -161,7 +159,9 @@ public class pwCtrl : MonoBehaviour
             StartCoroutine(GameManager.instance.GameOver());
         }
         else
+        {
             GameManager.instance.isShowScript = false;
+        }
 
 
     }
