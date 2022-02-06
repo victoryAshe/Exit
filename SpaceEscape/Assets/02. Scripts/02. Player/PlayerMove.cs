@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 7f;
@@ -18,6 +19,11 @@ public class PlayerMove : MonoBehaviour
     public Image hpImage;
     public GameObject bulletPrefab;
 
+    public AudioClip damagedSfx;       //음원
+    public AudioClip dieSfx; public AudioClip lvupSFx;
+    public AudioClip healSFx;   
+    private new AudioSource audio;  //AudioSource Component 저장 변수
+
     CharacterController cc; //CharacterController 캐시처리 변수
     private Animation anim;
 
@@ -25,6 +31,7 @@ public class PlayerMove : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         anim = GetComponent<Animation>();
+        audio = GetComponent<AudioSource>();
 
         anim.Play("Idle");
     }
@@ -85,10 +92,11 @@ public class PlayerMove : MonoBehaviour
     public void DamageAction(int damage)
     {
         hp -= damage;
-
+        audio.PlayOneShot(damagedSfx, 1.0f);
         if (hp <= 0)
         {
             hp = 0;  DisplayHp();
+            audio.PlayOneShot(dieSfx, 2.0f);
             GameManager.instance.EndKey = false;
             GameManager.instance.IsGameOver = true;
         }
@@ -98,6 +106,7 @@ public class PlayerMove : MonoBehaviour
     public void OnHeal(int value)
     {
         hp += value;
+        audio.PlayOneShot(healSFx, 1.2f);
         if (hp > maxHp)
         {
             hp = maxHp;
@@ -119,6 +128,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (level * 3 == killCount)
         {
+            audio.PlayOneShot(lvupSFx, 3.5f);
             level += 1; killCount = 0;
             maxHp = 20 * level; hp = maxHp;
             LvText.text = level.ToString();

@@ -15,6 +15,7 @@ public class PlayerFire : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        audio.volume -= 0.02f;
     }
 
     void Update()
