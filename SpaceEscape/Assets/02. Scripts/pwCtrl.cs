@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class pwCtrl : MonoBehaviour
 {
     public string password;
@@ -31,7 +30,6 @@ public class pwCtrl : MonoBehaviour
 
     void Start()
     {
-
         data = GetComponent<ObjectData>();
         id = data.objectId;
         password = data.password;
@@ -52,12 +50,7 @@ public class pwCtrl : MonoBehaviour
 
         //hintText 변경
         hintText = pwPanel.GetComponentInChildren<TextMeshProUGUI>();
-        if (id == 131 || id == 132)
-            hintText.text = "";
-        else if (id == 208 || id == 209)
-            hintText.text = "[Hint] Array Num";
-        else if (id == 305)
-            hintText.text = "[Hint] 지금은 __C, The Ark의 함장의 ID는 ______";
+
 
     }
 
@@ -97,6 +90,15 @@ public class pwCtrl : MonoBehaviour
         GameManager.instance.isShowScript = true;
         yield return new WaitForSeconds(1.5f);
         isTrue = true;
+
+        //hintText 설정
+        if (id == 131 || id == 132)
+            hintText.text = "";
+        else if (id == 208 || id == 209)
+            hintText.text = "[Hint] Array Num";
+        else if (id == 305)
+            hintText.text = "[Hint] 지금은 __C, The Ark의 함장의 ID는 ______";
+
         pwPanel.SetActive(true);
         
     }

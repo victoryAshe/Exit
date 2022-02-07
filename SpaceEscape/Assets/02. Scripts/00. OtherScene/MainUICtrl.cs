@@ -33,8 +33,6 @@ public class MainUICtrl : MonoBehaviour
         quit.onClick.AddListener(() => StartCoroutine(OnClickQuit()));
         setUp.onClick.AddListener(() => StartCoroutine(OnClickSetUp()));
 
-        
-
     }
 
     void Update()
