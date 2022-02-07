@@ -11,6 +11,7 @@ public class Warp : MonoBehaviour
 
     public AudioClip WarpClip;
     private new AudioSource audio;
+    public bool isTrue;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class Warp : MonoBehaviour
         if (col.gameObject.CompareTag("PLAYER"))
         {
             StartPos = col.gameObject;
+            GameManager.instance.isShowScript = true;
 
             audio.PlayOneShot(WarpClip, 1.0f);
             
@@ -60,8 +62,22 @@ public class Warp : MonoBehaviour
 
     IEnumerator FadeOut()
     {
-        Invoke("warpRoutine", 2);
+        Invoke("warpRoutine", 1.5f);
         yield return new WaitForSeconds(1.5f);
+
+        if (!isTrue)
+        {
+            GameManager.instance.questId = 4;
+            GameManager.instance.enemyQuantity = 20;
+            GameManager.instance.SetTimer(0, 0);
+        }
+
+        else if (isTrue && GameManager.instance.questId < 3)
+        {
+            GameManager.instance.questId += 1;
+            GameManager.instance.SetTimer(5, 0);
+
+        }
 
         float fadeCount = 1.0f; //처음 알파값
         while (fadeCount > 0)
@@ -71,6 +87,9 @@ public class Warp : MonoBehaviour
             Black.color = new Color(0, 0, 0, fadeCount);//해당 변수값으로 알파값 지정
         }
         Black.gameObject.SetActive(false);
+        GameManager.instance.isShowScript = false;
+
+        
 
         //Application.targetFrameRate = 50;
     }

@@ -43,6 +43,7 @@ public class InGameUICtrl : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
     }
 
     IEnumerator OnClickQuit()
