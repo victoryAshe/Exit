@@ -42,6 +42,7 @@ public class EnemyFSM : MonoBehaviour
     void Start()
     {
         m_State = EnemyState.Idle;
+
         player = GameObject.FindWithTag("PLAYER").transform;
 
         cc = GetComponent<CharacterController>();
@@ -83,13 +84,8 @@ public class EnemyFSM : MonoBehaviour
 
     void Idle()
     {
-        
-        if (Vector3.Distance(transform.position, player.position) < findDistance)
-        {
-            m_State = EnemyState.Move;
-            anim.SetTrigger("IdleToMove");
-
-        }
+        m_State = EnemyState.Move;
+        anim.SetTrigger("IdleToMove");
     }
 
     void Move()

@@ -110,7 +110,6 @@ public class pwCtrl : MonoBehaviour
         if (pw == password)
         {
             gui.OnNotification("맞는 비밀번호 입니다.");
-            input.text = "Enter Password...";
             StartCoroutine(OpenDoor());
         }
         else 
@@ -137,10 +136,12 @@ public class pwCtrl : MonoBehaviour
     IEnumerator OpenDoor()
     {
         audio.PlayOneShot(DoorOpenClip, 2.0f);
-
-        yield return new WaitForSeconds(2.0f);
+        
+        yield return new WaitForSeconds(0.5f);
         pwPanel.SetActive(false);
+        input.text = null;
         isTrue = false;
+
         //문 열기
         for (int i=0; i<100;i++)
         {

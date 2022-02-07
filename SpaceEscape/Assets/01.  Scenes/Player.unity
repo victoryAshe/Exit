@@ -177,16 +177,21 @@ MonoBehaviour:
   endingText: {fileID: 1752117960}
   start: {fileID: 476569901}
   quit: {fileID: 160257406}
+  doors: []
+  endPoses: []
+  DoorOpenClip: {fileID: 8300000, guid: 671b1348f49834394bbb9ed14b947df7, type: 3}
   isGamePaused: 0
   isShowScript: 0
   isShowPanel: 0
   isShowAlpha: 0
+  questId: 1
   timeText: {fileID: 1723476188}
   minute: 0
   second: 0
+  timer: 0
   enemy: {fileID: 5007833584271194416, guid: e2f023d42c3d46445a6eaa247a1ec968, type: 3}
   enemies: {fileID: 481555650}
-  enemyQuantity: 0
+  enemyQuantity: 1
 --- !u!114 &10296525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +881,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 10296525}
         m_TargetAssemblyTypeName: InGameUICtrl, Assembly-CSharp
-        m_MethodName: OnClickQuit
+        m_MethodName: NewQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3757,7 +3762,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 10296525}
         m_TargetAssemblyTypeName: InGameUICtrl, Assembly-CSharp
-        m_MethodName: OnClickStart
+        m_MethodName: Newstart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6719,7 +6724,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1067122638
 RectTransform:
