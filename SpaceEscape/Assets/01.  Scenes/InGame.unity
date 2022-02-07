@@ -80180,6 +80180,12 @@ MonoBehaviour:
   - {fileID: 1698627507}
   - {fileID: 283889298}
   - {fileID: 376671574}
+  UnknownImageButton: {fileID: 1325338503}
+  UnknownImagePanel: {fileID: 276680332}
+  UnknownImageX: {fileID: 1230485709}
+  PanelNumButton: {fileID: 1869280007}
+  PanelNumImage: {fileID: 2088928643}
+  PanelNumImageX: {fileID: 1537984497}
 --- !u!114 &1315899921
 MonoBehaviour:
   m_ObjectHideFlags: 0
