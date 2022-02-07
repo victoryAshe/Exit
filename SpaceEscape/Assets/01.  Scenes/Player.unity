@@ -181,6 +181,7 @@ MonoBehaviour:
   isShowScript: 0
   isShowPanel: 0
   isShowAlpha: 0
+  questId: 1
   timeText: {fileID: 1723476188}
   minute: 0
   second: 0
@@ -2700,7 +2701,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3398605448026595206, guid: 4d9d6e59f2d504143ad27b2ba3f850b3, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ea9f72a981c771244ab2d97e990a160b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
