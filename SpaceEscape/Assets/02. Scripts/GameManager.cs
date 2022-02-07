@@ -39,14 +39,23 @@ public class GameManager : MonoBehaviour
 
     //PLAYER가 있는 방을 알아내서 ENEMY를 CREATE할 장소 정하도록 해주는 ID
     public int questId = 1;
-    Vector3[] enemyPos = new Vector3[] 
+    Vector3[] enemyPosStart = new Vector3[] 
     {
-        new Vector3(8.47500038f, -0.800000012f, -19.3390007f),  //Room1
-        new Vector3(60.9500008f, 0.400000006f, -66.75f),        //Room2
-        new Vector3(138f, 0.400000006f, -28.529501f),           //Room3
-        new Vector3(3.05999994f,-1.32459128f,18.3999996f)       //FakeRoom
+        new Vector3(5.78299999f,-0.800000012f,-15.2510004f),  //Room1
+        new Vector3(62.3170013f,0.400000006f,-70.2369995f),        //Room2
+        new Vector3(135.860001f,0.400000006f,-23.8400002f),           //Room3
+        new Vector3(41.5499992f,-1.4040246f,40.4500008f)       //FakeRoom
 
     };
+
+    Vector3[] enemyPosEnd = new Vector3[]
+{
+        new Vector3(10.5579996f,-0.800000012f,-23.5580006f),  //Room1
+        new Vector3(59.6580009f,0.400000006f,-63.473999f),        //Room2
+        new Vector3(140.136993f,0.400000006f,-33.2190018f),           //Room3
+        new Vector3(31.4899998f,-1.4040246f,34.0699997f)       //FakeRoom
+
+};
 
     public Text timeText;
     public float minute = 0f;  public float second = 0f;
@@ -60,7 +69,7 @@ public class GameManager : MonoBehaviour
             timer = value;
             if (timer == 0)
             {
-                CreateEnemy(enemyPos[questId - 1]);
+                CreateEnemy(enemyPosStart[questId - 1], enemyPosEnd[questId - 1]);
             }
                 
         } 
@@ -174,14 +183,16 @@ public class GameManager : MonoBehaviour
     }
     */
 
-    public void CreateEnemy(Vector3 pos)
+    public void CreateEnemy(Vector3 startPos, Vector3 endPos)
     {
         // TODO: Enemy를 적절한 자리에 Instantiate, Level을 Random으로 정해줌
         for(int i=0; i< enemyQuantity; i++)
         {
-            float randomX = pos.x + Random.Range(0f, 2f);
-            float randomZ = pos.z + Random.Range(0f, 3f);
-            GameObject Temp = Instantiate(enemy, new Vector3(randomX, pos.y, randomZ), Quaternion.identity);
+            //float randomX = pos.x + Random.Range(0f, 2f);
+            //float randomZ = pos.z + Random.Range(0f, 3f);
+            float rand = Random.Range(0f, 1f);
+
+            GameObject Temp = Instantiate(enemy, Vector3.Lerp(startPos, endPos, rand), Quaternion.identity);
             Temp.transform.parent = enemies.transform;
             Temp.SetActive(true);
         }
