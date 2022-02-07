@@ -25,6 +25,8 @@ public class PCctrl : MonoBehaviour
 
         UnknownImageButton.onClick.AddListener(() => Panel_Array());
         PanelNumButton.onClick.AddListener(() => Panel_Num());
+        UnknownImageX.onClick.AddListener(() => Panel_Array_X());
+        PanelNumImageX.onClick.AddListener(() => Panel_Num_X());
 
     }
 
@@ -55,6 +57,7 @@ public class PCctrl : MonoBehaviour
 
     public void Panel_Array()
     {
+
         if (!UnknownImagePanel.activeSelf)
             UnknownImagePanel.SetActive(true);
         else
@@ -69,5 +72,14 @@ public class PCctrl : MonoBehaviour
             PanelNumImage.SetActive(false);
     }   
     
+    public void Panel_Array_X()
+    {
+        UnknownImagePanel.SetActive(false);
+    }
+    public void Panel_Num_X()
+    {
+        PanelNumImage.SetActive(false);
+    }
+
 
 }

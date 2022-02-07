@@ -80181,10 +80181,10 @@ MonoBehaviour:
   - {fileID: 283889298}
   - {fileID: 376671574}
   UnknownImageButton: {fileID: 1325338503}
-  UnknownImagePanel: {fileID: 276680332}
+  UnknownImagePanel: {fileID: 752697412}
   UnknownImageX: {fileID: 1230485709}
   PanelNumButton: {fileID: 1869280007}
-  PanelNumImage: {fileID: 2088928643}
+  PanelNumImage: {fileID: 355723238}
   PanelNumImageX: {fileID: 1537984497}
 --- !u!114 &1315899921
 MonoBehaviour:
