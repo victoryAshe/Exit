@@ -48,7 +48,7 @@ public class EnemyFSM : MonoBehaviour
         cc = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
-        level = Random.Range(1, 10);
+        level = Random.Range(1, 5);
         maxHp = level*15;    hp = maxHp;
         attackPower = level*3;
         lvText.text = "LV. "+level.ToString();
