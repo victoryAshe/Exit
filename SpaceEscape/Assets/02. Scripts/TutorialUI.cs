@@ -78,8 +78,7 @@ public class TutorialUI : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
 
         // 플레이 씬 열기
-        SceneManager.LoadScene("InGame");
-        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Prologue");
 
     }
 }

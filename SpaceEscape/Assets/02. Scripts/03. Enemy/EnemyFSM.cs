@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +21,7 @@ public class EnemyFSM : MonoBehaviour
     public float moveSpeed = 5f;
 
     //## Attack ##
-    float currentTime = 0;  float attackDelay = 2f;
+    float currentTime = 0; float attackDelay = 2f;
     public int attackPower;
 
     public Slider hpSlider;
@@ -49,9 +48,9 @@ public class EnemyFSM : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         level = Random.Range(1, 5);
-        maxHp = level*15;    hp = maxHp;
-        attackPower = level*3;
-        lvText.text = "LV. "+level.ToString();
+        maxHp = level * 15; hp = maxHp;
+        attackPower = level * 3;
+        lvText.text = "LV. " + level.ToString();
         audio = GetComponent<AudioSource>();
 
     }
@@ -114,7 +113,7 @@ public class EnemyFSM : MonoBehaviour
         if (Vector3.Distance(transform.position, player.position) < attackDistance)
         {
             currentTime += Time.deltaTime;
-            if(currentTime>attackDelay)
+            if (currentTime > attackDelay)
             {
                 //player.GetComponent<PlayerMove>().DamageAction(attackPower);
                 currentTime = 0;
@@ -156,7 +155,7 @@ public class EnemyFSM : MonoBehaviour
             return;
 
         hp -= hitPower;
-        
+
         if (hp > 0)
         {
             m_State = EnemyState.Damaged;
@@ -182,7 +181,7 @@ public class EnemyFSM : MonoBehaviour
         audio.Pause();
         audio.PlayOneShot(dieSFx, 1.0f);
         cc.enabled = false;
-        
+
         yield return new WaitForSeconds(2.0f);
 
         PlayerMove pm = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMove>();
