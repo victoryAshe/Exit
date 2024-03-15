@@ -106,8 +106,8 @@ public class GameManager : MonoBehaviour
         doors = finder.doors;   endPoses = finder.endPoses;
 
         //Room1 Timer
-        //SetTimer(5, 0);
-        SetTimer(0, 5);
+        SetTimer(5, 0);
+        //SetTimer(0, 5);
         //test
         //CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
 
