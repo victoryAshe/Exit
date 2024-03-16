@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class SoundSlider : MonoBehaviour
+public class AudioCtrl : MonoBehaviour
 {
     public AudioMixer masterMixer;
-    public Slider audioSlider;
+    public Slider bgSoundSlider;
+    public Slider sfxSoundSlider;
 
     public void BackAudioControl()
     {
-        float sound = audioSlider.value;
+        float sound = bgSoundSlider.value;
 
         if (sound == -40f) masterMixer.SetFloat("BackGround", -80);
         else masterMixer.SetFloat("BackGround", sound);
@@ -21,7 +22,7 @@ public class SoundSlider : MonoBehaviour
 
     public void SFXAudioControl()
     {
-        float sound = audioSlider.value;
+        float sound = sfxSoundSlider.value;
         if (sound == -40f) masterMixer.SetFloat("SFX", -80);
         else masterMixer.SetFloat("SFX", sound);
     }
