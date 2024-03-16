@@ -7,34 +7,34 @@ public class CommonUICtrl : MonoBehaviour
 {
     public static CommonUICtrl instance;
 
-    private AudioSource sfxSource;
-    public AudioClip buttonClip;
-
     public GameObject setupPanel;
     public Button closeSetupBtn;
     public Image fadeImage;
 
     WaitForSeconds fadeWfs = new WaitForSeconds(0.01f);
 
+    AudioCtrl audioCtrl;
+
     private void Awake()
     {
         if (instance == null) instance = this;
         DontDestroyOnLoad(gameObject);
-        TryGetComponent<AudioSource>(out sfxSource);
+
+        audioCtrl = AudioCtrl.instance;
 
         closeSetupBtn.onClick.AddListener(OnClickCloseSetting) ;
     }
 
     void OnClickCloseSetting()
     {
-        sfxSource.PlayOneShot(buttonClip, 1.0f);
+        audioCtrl.PlayButtonClick();
         setupPanel.SetActive(false);
     }
 
 
     public IEnumerator OnClickQuit()
     {
-        sfxSource.PlayOneShot(buttonClip, 1.0f);
+        audioCtrl.PlayButtonClick();
         yield return new WaitForSeconds(0.5f);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -43,19 +43,21 @@ public class CommonUICtrl : MonoBehaviour
 #endif
     }
 
-    public void PlayButtonClick()
-    {
-        sfxSource.PlayOneShot(buttonClip, 1.0f);
-    }
+
 
     public void OnClickSetUp(bool isButtonInput)
     {
-        if(isButtonInput) sfxSource.PlayOneShot(buttonClip, 1.0f);
+        if (audioCtrl == null) audioCtrl = AudioCtrl.instance;
+        if (isButtonInput) audioCtrl.PlayButtonClick();
+
+
 
         if (setupPanel.activeSelf == false)
             setupPanel.SetActive(true);
         else
             setupPanel.SetActive(false);
+
+        if (audioCtrl.hasInitedSetting == false) audioCtrl.InitSetting();
     }
 
 

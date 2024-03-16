@@ -605,19 +605,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1889975292}
-        m_TargetAssemblyTypeName: SoundSlider, Assembly-CSharp
-        m_MethodName: SFXAudioControl
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &444615731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1625,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1033376646}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 444615731}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1033376646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2247,7 +2247,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520c2d797663bf6469202931546a4569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonClip: {fileID: 8300000, guid: 2842a97c1a176446cb3688fe1fbf4bce, type: 3}
   setupPanel: {fileID: 444615731}
   closeSetupBtn: {fileID: 1033376645}
   fadeImage: {fileID: 695552844}
@@ -2375,8 +2374,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterMixer: {fileID: 24100000, guid: 4d9d6e59f2d504143ad27b2ba3f850b3, type: 2}
-  bgSoundSlider: {fileID: 2115304501}
-  sfxSoundSlider: {fileID: 408558971}
+  bgmSlider: {fileID: 2115304501}
+  sfxSlider: {fileID: 408558971}
+  sfxSource: {fileID: 1584427930}
+  bgmSource: {fileID: 752112671}
+  buttonClip: {fileID: 8300000, guid: 2842a97c1a176446cb3688fe1fbf4bce, type: 3}
+  mainBgmClip: {fileID: 8300000, guid: ea9f72a981c771244ab2d97e990a160b, type: 3}
+  subBgmClip: {fileID: 8300000, guid: 2e03ea08721f4428bad8a4aca5b4d869, type: 3}
+  hasInitedSetting: 0
 --- !u!1 &1615562135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,8 +2865,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   masterMixer: {fileID: 24100000, guid: 4d9d6e59f2d504143ad27b2ba3f850b3, type: 2}
-  bgSoundSlider: {fileID: 0}
-  sfxSoundSlider: {fileID: 0}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
+  sfxSource: {fileID: 0}
+  bgmSource: {fileID: 0}
+  buttonClip: {fileID: 0}
+  mainBgmClip: {fileID: 0}
+  subBgmClip: {fileID: 0}
+  hasInitedSetting: 0
 --- !u!4 &1889975293
 Transform:
   m_ObjectHideFlags: 0
@@ -3268,19 +3279,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SoundSlider, Assembly-CSharp
-        m_MethodName: BackAudioControl
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &2126368873
 GameObject:
   m_ObjectHideFlags: 0

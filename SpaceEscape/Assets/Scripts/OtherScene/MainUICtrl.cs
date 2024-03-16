@@ -15,15 +15,11 @@ public class MainUICtrl : MonoBehaviour
     WaitForSeconds wfs = new WaitForSeconds(1.5f);
     CommonUICtrl commonUICtrl;
 
-    void Awake()
+    void Start()
     {
         commonUICtrl = CommonUICtrl.instance;
         StartCoroutine(commonUICtrl.FadeIn(true));
-        
-    }
 
-    void Start()
-    {
         tutorialBtn.onClick.AddListener(() => StartCoroutine(OnClickTuto()));
         startBtn.onClick.AddListener(() => StartCoroutine(OnClickStart()));
         quitBtn.onClick.AddListener(() => StartCoroutine(commonUICtrl.OnClickQuit()));
@@ -39,7 +35,7 @@ public class MainUICtrl : MonoBehaviour
 
     IEnumerator OnClickTuto()
     {
-        commonUICtrl.PlayButtonClick();
+        AudioCtrl.instance.PlayButtonClick();
         yield return commonUICtrl.FadeIn(false);
         SceneManager.LoadScene("Tutorial");
    
@@ -48,7 +44,7 @@ public class MainUICtrl : MonoBehaviour
 
     IEnumerator OnClickStart()
     {
-        commonUICtrl.PlayButtonClick();
+        AudioCtrl.instance.PlayButtonClick();
         yield return commonUICtrl.FadeIn(false);
         SceneManager.LoadScene("Prologue");
 
