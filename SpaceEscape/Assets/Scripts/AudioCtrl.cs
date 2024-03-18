@@ -20,7 +20,7 @@ public class AudioCtrl : MonoBehaviour
     public AudioClip buttonClip;
     public AudioClip mainBgmClip;
     public AudioClip subBgmClip;
-    public bool hasInitedSetting = false;
+    [HideInInspector]public bool hasInitedSetting = false;
 
     WaitForSeconds wfs = new WaitForSeconds(0.01f);
 

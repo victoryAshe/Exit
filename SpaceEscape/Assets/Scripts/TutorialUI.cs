@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class TutorialUI : MonoBehaviour
@@ -10,63 +9,49 @@ public class TutorialUI : MonoBehaviour
     public Button NextButton;
     public Button StartButton;
     public Button UndoButton;
-    public Image image;
-    public int index = 1;
-
-    public AudioClip ButtonClip;  
-    private new AudioSource audio;
+    public Image informImage;
+    public Sprite[] informSprites;
+    int imageIndex = 0;
+    AudioCtrl audioCtrl;
 
     void Start()
     {
-        NextButton.onClick.AddListener(() => StartCoroutine(OnClickNext()));
-        UndoButton.onClick.AddListener(() => StartCoroutine(OnClickUndo()));
+        audioCtrl = AudioCtrl.instance;
+        StartCoroutine(CommonUICtrl.instance.FadeIn(true));
+
+        NextButton.onClick.AddListener(() => OnClickNext());
+        UndoButton.onClick.AddListener(() => OnClickUndo());
         StartButton.onClick.AddListener(() => StartCoroutine(OnClickStart()));
-        image = GetComponent<Image>();
-
-        audio = GetComponent<AudioSource>();
-        
     }
 
-    
-    void Update()
+    void OnClickNext()
     {
-    }
+        audioCtrl.PlayButtonClick();
 
+        informImage.sprite = informSprites[++imageIndex];
 
-    IEnumerator OnClickNext()
-    {
-        audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
-
-        index += 1;
-        // NexrButton 누르면 다음 이미지로 변경
-        image.sprite = Resources.Load<Sprite>("TutorialImage/Tutorial(" + index + ")");
-
-        if (index == 6)
+        if (imageIndex == 5)
         {
             NextButton.gameObject.SetActive(false);
         }
-        if (index == 2)
+        if (imageIndex == 1)
         {
             UndoButton.gameObject.SetActive(true);
         }
 
     }
 
-    IEnumerator OnClickUndo()
+    void OnClickUndo()
     {
-        audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        audioCtrl.PlayButtonClick();
 
-        index -= 1;
-        // UndoButton 누르면 전 이전 이미지로 변경
-        image.sprite = Resources.Load<Sprite>("TutorialImage/Tutorial(" + index + ")");
+        informImage.sprite = informSprites[--imageIndex];
 
-        if (index == 1)
+        if (imageIndex == 0)
         {
             UndoButton.gameObject.SetActive(false);
         }
-        if (index == 5)
+        if (imageIndex == 4)
         {
             NextButton.gameObject.SetActive(true);
         }
@@ -74,10 +59,9 @@ public class TutorialUI : MonoBehaviour
 
     IEnumerator OnClickStart()
     {
-        audio.PlayOneShot(ButtonClip, 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        audioCtrl.PlayButtonClick();
 
-        // 플레이 씬 열기
+        yield return CommonUICtrl.instance.FadeIn(false);
         SceneManager.LoadScene("Prologue");
 
     }
