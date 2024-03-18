@@ -17,6 +17,7 @@ public class TutorialUI : MonoBehaviour
     void Start()
     {
         audioCtrl = AudioCtrl.instance;
+        StartCoroutine(audioCtrl.PlayBgm(Enums.bgmType.프롤로그_및_튜토리얼));
         StartCoroutine(CommonUICtrl.instance.FadeIn(true));
 
         NextButton.onClick.AddListener(() => OnClickNext());

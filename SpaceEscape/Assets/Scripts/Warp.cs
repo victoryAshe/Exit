@@ -7,17 +7,21 @@ public class Warp : MonoBehaviour
 {
     public GameObject StartPos;
     public GameObject EndPos;
-    public Image Black;
+
+    bool isTriggered = false;
 
     public AudioClip WarpClip;
-    private new AudioSource audio;
     public bool isTrue;
+
+    CommonUICtrl commonUICtrl;
+    AudioCtrl audioCtrl;
+
 
     void Start()
     {
-        Black = GameObject.Find("UIcanvas").transform.Find("blackPanel").GetComponent<Image>();
+        commonUICtrl = CommonUICtrl.instance;
+        audioCtrl = AudioCtrl.instance;
 
-        audio = GetComponent<AudioSource>();
     }
 
     void warpRoutine()
@@ -27,38 +31,26 @@ public class Warp : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider col)
+    private IEnumerator OnTriggerEnter(Collider col)
     {
         //Application.targetFrameRate = 30;
 
         if (col.gameObject.CompareTag("PLAYER"))
         {
+            if (isTriggered == true) yield break;
+
             StartPos = col.gameObject;
             GameManager.instance.isShowScript = true;
 
-            audio.PlayOneShot(WarpClip, 1.0f);
+            audioCtrl.PlaySFX(WarpClip, 1.0f);
             
 
             //2초뒤 warp 실행
-            StartCoroutine(FadeIn());
-            
+            yield return commonUICtrl.FadeIn(true);
+            StartCoroutine(FadeOut());
         }
     }
 
-
-    IEnumerator FadeIn()
-    {
-        Black.gameObject.SetActive(true);
-
-        float fadeCount = 0f; //처음 알파값
-        while (fadeCount <= 1.0f)
-        {
-            fadeCount += 0.01f;
-            yield return new WaitForSeconds(0.01f);
-            Black.color = new Color(0, 0, 0, fadeCount);//해당 변수값으로 알파값 지정
-        }
-        StartCoroutine(FadeOut());
-    }
 
     IEnumerator FadeOut()
     {
@@ -69,28 +61,17 @@ public class Warp : MonoBehaviour
         {
             GameManager.instance.questId = 4;
             GameManager.instance.enemyQuantity = 20;
-            GameManager.instance.SetTimer(0, 0);
+            GameManager.instance.SetTimer(0);
         }
 
         else if (isTrue && GameManager.instance.questId < 3)
         {
             GameManager.instance.questId += 1;
-            GameManager.instance.SetTimer(5, 0);
+            GameManager.instance.SetTimer(300);
 
         }
 
-        float fadeCount = 1.0f; //처음 알파값
-        while (fadeCount > 0)
-        {
-            fadeCount -= 0.01f;
-            yield return new WaitForSeconds(0.01f);
-            Black.color = new Color(0, 0, 0, fadeCount);//해당 변수값으로 알파값 지정
-        }
-        Black.gameObject.SetActive(false);
+        commonUICtrl.FadeIn(false);
         GameManager.instance.isShowScript = false;
-
-        
-
-        //Application.targetFrameRate = 50;
     }
 }

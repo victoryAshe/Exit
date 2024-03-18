@@ -11,13 +11,4 @@ public class ObjectData : MonoBehaviour
     public int keyId; //Key°¡ µÉ objectId
     public string password;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 }

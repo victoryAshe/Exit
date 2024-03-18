@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CommonUICtrl : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class CommonUICtrl : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
+        else Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
 
         audioCtrl = AudioCtrl.instance;
@@ -25,17 +27,57 @@ public class CommonUICtrl : MonoBehaviour
         closeSetupBtn.onClick.AddListener(OnClickCloseSetting) ;
     }
 
+    public void OnClickSetUp(bool isButtonInput)
+    {
+        if (audioCtrl == null) audioCtrl = AudioCtrl.instance;
+        if (isButtonInput) audioCtrl.PlayButtonClick();
+
+        if (GameManager.instance)
+        {
+            if (!GameManager.instance.isGamePaused) GameManager.instance.isGamePaused = true;
+            else GameManager.instance.isGamePaused = false;
+        }
+
+        if (setupPanel.activeSelf == false)
+            setupPanel.SetActive(true);
+        else
+            setupPanel.SetActive(false);
+
+        if (audioCtrl.hasInitedSetting == false) audioCtrl.InitSetting();
+    }
+
     void OnClickCloseSetting()
     {
         audioCtrl.PlayButtonClick();
+        if (GameManager.instance) GameManager.instance.isGamePaused = false;
         setupPanel.SetActive(false);
     }
 
 
+
+    public IEnumerator OnClickStart()
+    {
+        if (audioCtrl == null) audioCtrl = AudioCtrl.instance;
+        audioCtrl.PlayButtonClick();
+        yield return FadeIn(false);
+        SceneManager.LoadScene("Prologue");
+    }
+
+    public IEnumerator OnClickStartNew()
+    {
+        audioCtrl.PlayButtonClick();
+        yield return FadeIn(false);
+
+        SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
+    }
+
     public IEnumerator OnClickQuit()
     {
         audioCtrl.PlayButtonClick();
-        yield return new WaitForSeconds(0.5f);
+        FadeIn(false);
+        yield return audioCtrl.PlayBgm(Enums.bgmType.None);
+        
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -45,20 +87,7 @@ public class CommonUICtrl : MonoBehaviour
 
 
 
-    public void OnClickSetUp(bool isButtonInput)
-    {
-        if (audioCtrl == null) audioCtrl = AudioCtrl.instance;
-        if (isButtonInput) audioCtrl.PlayButtonClick();
 
-
-
-        if (setupPanel.activeSelf == false)
-            setupPanel.SetActive(true);
-        else
-            setupPanel.SetActive(false);
-
-        if (audioCtrl.hasInitedSetting == false) audioCtrl.InitSetting();
-    }
 
 
     public IEnumerator FadeIn(bool isIn)

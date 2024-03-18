@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private GameObject UIcanvas;
-    public bool isGameOver; public Image overPanel;
+    public Image overPanel;
     public bool EndKey;
     public Text endTitle;    public Text endingText;
     private string endingString;
@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     public Transform[] doors; private float speed = 5.0f;
     public Transform[] endPoses;
     public AudioClip DoorOpenClip;
-    private new AudioSource audio;
+    AudioCtrl audioCtrl;
 
+    private bool isGameOver;
     //게임의 종료 여부를 저장할 프로퍼티
     public bool IsGameOver
     {
@@ -58,10 +59,10 @@ public class GameManager : MonoBehaviour
 };
 
     public Text timeText;
-    public float minute = 0f;  public float second = 0f;
 
-    public float timer;
-    public float Timer
+    float second = 1f;
+    private int timer = 0;
+    public int Timer
     { 
         get { return timer; } 
         set 
@@ -87,48 +88,31 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        else if (instance != this)
-        {
-            Destroy(instance.gameObject);
-            instance = this;
-        }
-
-        DontDestroyOnLoad(this.gameObject);
-
     }
 
     void Start()
     {
-        audio = GetComponent<AudioSource>();
+        audioCtrl = AudioCtrl.instance;
 
         //TODO: Doors, EndPoses Scene에서 찾아서 할당
         TransformFinder finder = GameObject.Find("TransformFinder").GetComponent<TransformFinder>();
         doors = finder.doors;   endPoses = finder.endPoses;
 
         //Room1 Timer
-        SetTimer(5, 0);
-        //SetTimer(0, 5);
-        //test
-        //CreateEnemy(GameObject.FindWithTag("PLAYER").transform.position);
-
+        SetTimer(300);
     }
 
     void Update()
     {
         if (isGamePaused || IsGameOver) return;
 
-        if (timer > 0)
+        if (Timer > 0)
         {
-            if (second >= 1) second -= Time.deltaTime;
-            else if (minute >= 1)
-            {
-                minute -= 1; second = 60f;
-            }
-            else
-            {
-                Timer = 0;
-            }
-            timeText.text = Mathf.Floor(minute) + ":" + Mathf.Floor(second);
+            second -= Time.deltaTime;
+            if (second < 0)
+            { Timer--; second = 1; }
+            if (Timer < 0) Timer = 0;
+            timeText.text = string.Format("{0:D2}:{1:D2}", Timer / 60, Timer % 60);
 
         }
 
@@ -169,19 +153,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(TypingEffect());
     }
 
-    /*
-    IEnumerator SoundFadeout()
-    {
-
-        AudioSource bgAudio = GameObject.Find("Background").GetComponent<AudioSource>();
-
-        for (float i = 0; i <= 1.0f; i += 0.01f)
-        {
-            bgAudio.volume -= i;
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-    */
 
     public void CreateEnemy(Vector3 startPos, Vector3 endPos)
     {
@@ -203,12 +174,10 @@ public class GameManager : MonoBehaviour
         if (questId < 4) StartCoroutine(OpenDoor(questId - 1));
     }
 
-    public void SetTimer(int m, int s)
+    public void SetTimer(int val)
     {
-        //m = minutes, s = seconds
-        minute = m; second = s;
-        timer = minute * 60 + second;
-        timeText.text = m + ":" + s;
+        Timer = val;
+        timeText.text = string.Format("{0:D2}:{1:D2}",Timer / 60, Timer % 60);
     }
 
     IEnumerator TypingEffect()
@@ -225,9 +194,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator OpenDoor(int idx)
     {
-        audio.PlayOneShot(DoorOpenClip, 2.0f);
-
-        yield return new WaitForSeconds(0.5f);
+        audioCtrl.PlaySFX(DoorOpenClip, 2.0f);
 
         //문 열기
         for (int i = 0; i < 100; i++)
@@ -238,6 +205,8 @@ public class GameManager : MonoBehaviour
             doors[idx].position += dir * Time.deltaTime * speed;
 
         }
+
+        yield return new WaitForSeconds(0.5f);
 
 
     }

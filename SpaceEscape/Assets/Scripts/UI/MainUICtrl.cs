@@ -21,7 +21,7 @@ public class MainUICtrl : MonoBehaviour
         StartCoroutine(commonUICtrl.FadeIn(true));
 
         tutorialBtn.onClick.AddListener(() => StartCoroutine(OnClickTuto()));
-        startBtn.onClick.AddListener(() => StartCoroutine(OnClickStart()));
+        startBtn.onClick.AddListener(() => StartCoroutine(commonUICtrl.OnClickStart()));
         quitBtn.onClick.AddListener(() => StartCoroutine(commonUICtrl.OnClickQuit()));
         setUpBtn.onClick.AddListener(() => commonUICtrl.OnClickSetUp(true));
 
@@ -38,17 +38,8 @@ public class MainUICtrl : MonoBehaviour
         AudioCtrl.instance.PlayButtonClick();
         yield return commonUICtrl.FadeIn(false);
         SceneManager.LoadScene("Tutorial");
-   
-
     }
 
-    IEnumerator OnClickStart()
-    {
-        AudioCtrl.instance.PlayButtonClick();
-        yield return commonUICtrl.FadeIn(false);
-        SceneManager.LoadScene("Prologue");
-
-    }
 
 
 

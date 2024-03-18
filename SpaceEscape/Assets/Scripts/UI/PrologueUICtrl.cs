@@ -23,7 +23,7 @@ public class PrologueUICtrl : MonoBehaviour
         StartCoroutine(AudioCtrl.instance.PlayBgm(Enums.bgmType.프롤로그_및_튜토리얼));
         yield return commonUICtrl.FadeIn(true);
 
-        startNew.onClick.AddListener(() => StartCoroutine(OnClickStart()));
+        startNew.onClick.AddListener(() => StartCoroutine(commonUICtrl.OnClickStartNew()));
         skip.onClick.AddListener(() => OnClickSkip());
 
         yield return wfs3;
@@ -74,15 +74,6 @@ public class PrologueUICtrl : MonoBehaviour
         }
 
         startNew.gameObject.SetActive(true);
-    }
-
-    IEnumerator OnClickStart()
-    {
-        AudioCtrl.instance.PlayButtonClick();
-        yield return commonUICtrl.FadeIn(false);
-
-        SceneManager.LoadScene("InGame");
-        SceneManager.LoadScene("Player", LoadSceneMode.Additive);
     }
 
     void OnClickSkip()

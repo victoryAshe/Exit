@@ -61,8 +61,17 @@ public class AudioCtrl : MonoBehaviour
         sfxSource.PlayOneShot(buttonClip, 1.0f);
     }
 
+    public void PlaySFX(AudioClip clip, float time)
+    {
+        sfxSource.PlayOneShot(clip, time);
+    }
+
     public IEnumerator PlayBgm(Enums.bgmType type)
     {
+        if (type == Enums.bgmType.메인_및_인게임 && bgmSource.clip == mainBgmClip
+            || type == Enums.bgmType.프롤로그_및_튜토리얼 && bgmSource.clip == subBgmClip)
+            yield break;
+
         float originVolume;
         masterMixer.GetFloat(bgmGroupName, out originVolume);
 
@@ -81,7 +90,7 @@ public class AudioCtrl : MonoBehaviour
             
         }
 
-        
+
         if (type == Enums.bgmType.메인_및_인게임)
         {
             bgmSource.clip = mainBgmClip;
@@ -89,6 +98,11 @@ public class AudioCtrl : MonoBehaviour
         else if (type == Enums.bgmType.프롤로그_및_튜토리얼)
         {
             bgmSource.clip = subBgmClip;
+        }
+        else if (type == Enums.bgmType.None)
+        {
+            bgmSource.clip = null;
+            yield break;
         }
 
         while(currVolume < originVolume)

@@ -57,7 +57,7 @@ public class EnemyFSM : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused) return;
+        if (GameManager.instance.IsGameOver || GameManager.instance.isGamePaused) return;
 
         //DisplayHp
         hpSlider.value = (float)hp / (float)maxHp;

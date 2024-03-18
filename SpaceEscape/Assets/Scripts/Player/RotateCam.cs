@@ -8,14 +8,9 @@ public class RotateCam : MonoBehaviour
     private float mx = 0; private float my = 0;
     private float rotSpeed = 200f;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
-        if (GameManager.instance.isGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript 
+        if (GameManager.instance.IsGameOver || GameManager.instance.isGamePaused || GameManager.instance.isShowScript 
             || GameManager.instance.isShowPanel|| GameManager.instance.isShowAlpha) return;
 
         float mouseX = Input.GetAxis("Mouse X");
