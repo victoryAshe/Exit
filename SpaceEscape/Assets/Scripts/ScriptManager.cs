@@ -72,7 +72,7 @@ public class ScriptManager : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo = new RaycastHit();
             
-            if (Physics.Raycast(ray, out hitInfo) && Vector3.Distance(player.transform.position, hitInfo.transform.position) < 4.0f)
+            if (Physics.Raycast(ray, out hitInfo) && Vector3.Distance(player.transform.position, hitInfo.transform.position) < 5.0f)
             {
                 GameObject hit = hitInfo.transform.gameObject;
 

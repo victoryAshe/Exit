@@ -16,6 +16,7 @@ public class InGameUICtrl : MonoBehaviour
     public TextMeshProUGUI notification;
 
     CommonUICtrl commonUICtrl;
+    WaitForSeconds wfs =  new WaitForSeconds(0.01f);
     void Start()
     {
         commonUICtrl = CommonUICtrl.instance;
@@ -39,10 +40,8 @@ public class InGameUICtrl : MonoBehaviour
     {
         if (NotificationField.gameObject.activeSelf) return;
 
-        float fadeCount = 1.0f;
-
-        NotificationField.color = new Color(0, 0, 0, fadeCount);//해당 변수값으로 알파값 지정
-        notification.color = new Color(255, 255, 255, fadeCount);
+        NotificationField.color = new Color(0, 0, 0, 1);//해당 변수값으로 알파값 지정
+        notification.color = new Color(255, 255, 255, 1);
 
         notification.text = msg;
         NotificationField.gameObject.SetActive(true);
@@ -53,17 +52,17 @@ public class InGameUICtrl : MonoBehaviour
 
     public IEnumerator OffNotification()
     {
-        yield return new WaitForSeconds(0.03f);
+        yield return new WaitForSeconds(1.5f);
 
-        float fadeCount = 0.5f; //처음 알파값
+        float fadeCount = 1f; //처음 알파값
         NotificationField.color = new Color(0, 0, 0, fadeCount);
 
         while (fadeCount > 0)
         {
             fadeCount -= 0.01f;
-            yield return new WaitForSeconds(0.01f);
             NotificationField.color = new Color(0, 0, 0, fadeCount);//해당 변수값으로 알파값 지정
             notification.color = new Color(255, 255, 255, fadeCount);
+            yield return wfs;
         }
 
         NotificationField.gameObject.SetActive(false);

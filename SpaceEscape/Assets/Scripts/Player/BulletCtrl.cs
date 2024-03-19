@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletCtrl : MonoBehaviour
 {
-    public float damage = 20.0f;    //ÃÑ¾Ë ÆÄ±«·Â
+    public int damage = 5;    //ÃÑ¾Ë ÆÄ±«·Â
     private float force = 1500.0f;  //¹ß»çÇÏ´Â Èû
     private Rigidbody rb;
 
@@ -14,7 +14,7 @@ public class BulletCtrl : MonoBehaviour
     void Start()
     {
         pm = GameObject.FindWithTag("PLAYER").GetComponent<PlayerMove>();
-        weaponPower = pm.level * 5;
+        weaponPower = pm.level * damage;
 
         rb = GetComponent<Rigidbody>();
 
@@ -29,9 +29,9 @@ public class BulletCtrl : MonoBehaviour
         if(coll.transform.CompareTag("ENEMY"))
         {
             EnemyFSM eFSM = coll.transform.GetComponent<EnemyFSM>();
-            eFSM.HitEnemy(weaponPower);
-            Destroy(gameObject);
-                
+            eFSM.HitEnemy(weaponPower);   
         }
+
+        Destroy(gameObject);
     }
 }

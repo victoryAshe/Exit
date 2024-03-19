@@ -6,7 +6,7 @@ public class RotateCam : MonoBehaviour
 {
     //회전 값 변수
     private float mx = 0; private float my = 0;
-    private float rotSpeed = 200f;
+    private float rotSpeed = 100f;
 
     void Update()
     {
