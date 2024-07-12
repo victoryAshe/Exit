@@ -27,8 +27,13 @@ public class PlayerMove : MonoBehaviour
     CharacterController cc; //CharacterController 캐시처리 변수
     private Animation anim;
 
+    public static PlayerMove instance;
+
     void Start()
     {
+        if (instance == null) instance = this;
+        else return;
+
         cc = GetComponent<CharacterController>();
         anim = GetComponent<Animation>();
         audio = GetComponent<AudioSource>();
