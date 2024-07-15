@@ -17,13 +17,13 @@ public class ShowTarget : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-
+        
         if (Vector3.Distance(player.position, transform.position) <= targetDistance)
         {
             GameManager.instance.isShowAlpha = true;
             target.SetActive(true);
         }
-        else
+        else if(target.activeSelf==true)
         {
             GameManager.instance.isShowAlpha = false;
             target.SetActive(false);
